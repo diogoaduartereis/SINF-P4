@@ -2,7 +2,7 @@ ID Core View:
 CATALOGUE_VIEW
 
 Inward Paths/Trigger Words:
--Dasbhoard's catalogue button
+-Dashboard's catalogue button
 -Internal Search
 -Filtered Search
 -Ascending Sorted Search
