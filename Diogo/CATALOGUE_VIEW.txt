@@ -1,0 +1,12 @@
+ID Core View:
+CATALOGUE_VIEW
+
+Inward Paths/Trigger Words:
+-Dasbhoard's catalogue button
+-Internal Search
+-Filtered Search
+-Ascending Sorted Search
+-Descending Sorted Search
+
+Outward paths/Call to Action:
+-
