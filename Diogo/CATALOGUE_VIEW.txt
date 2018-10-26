@@ -19,3 +19,11 @@ Elements of the core:
 -Sort products by price,stock or name, ascending or descending
 -Add product to order
 -Go to product's page
+
+User/Business Goals:
+-Allow the user to add items to the cart for the client's order
+-Cart button that allows the user to go the order's checkout page
+
+
+
+
