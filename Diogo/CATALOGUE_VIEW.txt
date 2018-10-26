@@ -7,6 +7,15 @@ Inward Paths/Trigger Words:
 -Filtered Search
 -Ascending Sorted Search
 -Descending Sorted Search
+-Client Profile Page
 
 Outward paths/Call to Action:
--
+-Product View (PRODUCT_VIEW)
+-Provides the user a list of all the available products of the company so he can add them to an order
+
+Elements of the core:
+-Search products by name
+-Filter products by category and/or specification
+-Sort products by price,stock or name, ascending or descending
+-Add product to order
+-Go to product's page
