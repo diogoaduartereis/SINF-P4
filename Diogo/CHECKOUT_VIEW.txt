@@ -16,3 +16,8 @@ Elements of the core:
 -Search Client	   SEARCH_BAR_001   
 -Confirm order     BUTTON_003
 -Client information and total price PANEL_002
+
+User/Business Goals:
+-Be able to edit an order 
+-Quickly search the user, the order is intended to
+-Confirm the order
