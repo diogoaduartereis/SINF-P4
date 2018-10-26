@@ -1,0 +1,18 @@
+ID Core View:
+CHECKOUT_VIEW
+
+Inward Paths/Trigger Words:
+-CATALOGUE_VIEW cart icon
+
+Outward paths/Call to Action:
+-ORDER_VIEW
+-The order items are displayed from top to bottom and the user can increase or decrease the quantity
+-The user needs to associate the order to the client by searching his name, then he can confirm the order
+
+Elements of the core:
+-Increase quantity BUTTON_001
+-Decrease quantity BUTTON_002
+-Search Client	   
+-Confirm order 
+-Cart products list PANEL_001
+-Client information and total price PANEL_002
