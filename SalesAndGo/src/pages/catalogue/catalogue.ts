@@ -94,30 +94,34 @@ export class CataloguePage {
     alert.setTitle('Sort Products By');
 
     alert.addInput({
+      id: 'PRICE',
       type: 'radio',
       label: 'Price',
-      value: 'Price',
+      value: 'Price', 
       checked: true
     });
 
     alert.addInput({
+      id: 'STOCK',
       type: 'radio',
       label: 'Stock',
       value: 'Stock',
+      checked: false
     });
 
     alert.addInput({
+      id: 'NAME',
       type: 'radio',
       label: 'Name',
       value: 'Name',
+      checked: false
     });
 
     alert.addButton('Cancel');
     alert.addButton({
       text: 'Okay',
       handler: data => {
-        console.log('Checkbox data:', data);
-        this.sortValue = data
+        this.sortValue = data;
       }
     });
     alert.present();
