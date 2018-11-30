@@ -1,0 +1,122 @@
+<!--
+  Generated template for the ClientPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Client</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <button ion-button style="float: right; margin-bottom: 1em; margin-right: 0.65em;">
+    <ion-icon name="edit"></ion-icon>
+    Edit
+  </button>
+
+  <button ion-button style="margin-bottom: 1em; margin-left: 0.65em;">
+    <ion-icon name="cart"></ion-icon>
+  </button>
+
+  <br />
+
+  <ion-card>
+    <ion-card-header text-center>
+      <p>John Doe</p>
+      <ion-img width="80" height="80" style="background-color: transparent;" src="http://amskconstruction.com/images/client-images/sample.png"></ion-img>
+    </ion-card-header>
+
+
+    <ion-card-content>
+      <div text-center>
+        <button ion-button round icon-only round style="border-radius: 45%;">
+          <ion-icon name="mail"></ion-icon>
+        </button>
+
+        <button ion-button icon-only round style="border-radius: 45%;">
+          <ion-icon name="chatbubbles"></ion-icon>
+        </button>
+
+        <button ion-button icon-only round style="border-radius: 45%;">
+          <ion-icon name="call"></ion-icon>
+        </button>
+      </div>
+    </ion-card-content>
+
+  </ion-card>
+
+  <div padding>
+    <ion-segment [(ngModel)]="clientInfo">
+      <ion-segment-button value="information">
+        Information
+      </ion-segment-button>
+      <ion-segment-button value="activity">
+        Activity
+      </ion-segment-button>
+      <ion-segment-button value="notes">
+        Notes
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="clientInfo" style="height:100%;">
+    <ion-list *ngSwitchCase="'information'">
+      <ion-item>
+        <ion-grid>
+          <ion-row align-items-center>
+            <ion-col col-1>
+              <ion-icon name="mail"></ion-icon>
+            </ion-col>
+            <ion-col>
+              example@gmail.com
+            </ion-col>
+          </ion-row>
+          <ion-row align-items-center>
+            <ion-col col-1>
+              <ion-icon name="pin"></ion-icon>
+            </ion-col>
+            <ion-col>
+              Rua de Adoro SINF, 262 3º Esq. Frt.
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'activity'">
+      <ion-item>
+        <ion-grid>
+          <ion-row align-items-center>
+            <ion-col col-1>
+              <ion-icon name="card"></ion-icon>
+            </ion-col>
+            <ion-col>
+              Orders: 100
+            </ion-col>
+          </ion-row>
+          <ion-row align-items-center>
+            <ion-col col-1>
+              <ion-icon ios="logo-usd" md="logo-usd"></ion-icon>
+            </ion-col>
+            <ion-col>
+              Budgets: 25
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'notes'">
+      <ion-item>
+        <ion-textarea style="max-height: 100%; width: 100%; height: 100%;" placeholder="Enter notes"></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>
