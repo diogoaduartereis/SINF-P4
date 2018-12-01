@@ -45,16 +45,10 @@ export class CataloguePage {
         Http.onreadystatechange=function(){
           if(this.readyState==4 && this.status==200){
               object.products = JSON.parse(Http.responseText).DataSet.Table;
-              console.log(object.products)
           }
         }
       }
     }
-
-  }
-
-  initializeInventory(response)
-  {
 
   }
 

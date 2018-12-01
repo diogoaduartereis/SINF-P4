@@ -37,9 +37,11 @@
     <hr>
     <ion-list>
       <ion-item *ngFor="let product of products">
-        {{ product.Artigo }}
-        <img src = "http://94.60.211.16:8080/images/A.jpg">
-        {{ product.Descricao }}
+        <img src = "http://94.60.211.16:8080/images/A.jpg" style="width:30%; height:30%; display:block; margin-left: auto; margin-right:auto;">
+        <br>
+        <h2 style="text-align:center;">{{ product.Descricao }}</h2>
+        
       </ion-item>
     </ion-list>
+    <hr>
 </ion-content>
