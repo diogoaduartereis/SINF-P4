@@ -314,7 +314,7 @@ POST {{apiUrl}}Administrador/Consulta
 
 - Request
 ```
-{{apiUrl}}Base/Artigos/DaValorAtributo/[NOME_ARTIGO]/Descricao
+GET {{apiUrl}}Base/Artigos/DaValorAtributo/[NOME_ARTIGO]/Descricao
 ```
 
 - Response
