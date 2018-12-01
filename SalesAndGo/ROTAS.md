@@ -101,7 +101,6 @@ GET {{apiUrl}}Base/Clientes/LstClientes
 - Request
 ```
 POST {{apiUrl}}Base/Clientes/Actualiza
-```
 
 {
     "Cliente": "NUNOA",
@@ -119,6 +118,7 @@ POST {{apiUrl}}Base/Clientes/Actualiza
     "Pais": "ES",
     "Moeda": "EUR"
 }
+```
 
 - Response
 ``` 
