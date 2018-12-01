@@ -441,7 +441,7 @@ Clientes C ON C.Vendedor = V.Vendedor ORDER BY V.Vendedor
 ```
 POST {{apiUrl}}Administrador/Consulta
 
-"SELECT V.Vendedor, V.Nome, C.Cliente FROM Vendedores V INNER JOIN Clientes C ON C.Vendedor = V.Vendedor WHERE C.Vendedor = '1' ORDER BY V.Vendedor"
+"SELECT V.Vendedor, V.Nome, C.Cliente FROM Vendedores V INNER JOIN Clientes C ON C.Vendedor = V.Vendedor WHERE C.Vendedor = [ID_VENDEDOR] ORDER BY V.Vendedor"
 ```
 
 - Response
