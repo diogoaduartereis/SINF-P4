@@ -125,7 +125,7 @@ POST {{apiUrl}}Base/Clientes/Actualiza
 Status 204 No Content 
 ```
 
-## Total de Faturação de todo os Clientes
+## Total de Faturação de todos os Clientes
 
 - Request
 ```
