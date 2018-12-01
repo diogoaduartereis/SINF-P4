@@ -16,12 +16,46 @@ import { AlertController } from 'ionic-angular';
 })
 export class CataloguePage {
 
+
   searchQuery: string = '';
   items: string[];
   sortValue: string = 'Price';
+  products: string[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
     
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST", 'http://94.60.211.16:2018/WebApi/token', true);
+    var params = 'username=FEUP&password=qualquer1&company=BELAFLOR&instance=DEFAULT&grant_type=password&line=professional';
+    xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    xhttp.send(params)
+
+    var response;
+    let object = this;
+
+    xhttp.onreadystatechange=function(){
+      if(this.readyState==4 && this.status==200){
+        let response = JSON.parse(xhttp.responseText)
+        const Http = new XMLHttpRequest();
+        const url = 'http://94.60.211.16:2018/WebApi/Base/Artigos/LstArtigos'
+        Http.open("GET", url);
+        Http.setRequestHeader("Content-type", "application/json; charset=utf-8");
+        Http.setRequestHeader("Authorization", 'Bearer ' + response.access_token);
+        Http.send()
+        Http.onreadystatechange=function(){
+          if(this.readyState==4 && this.status==200){
+              object.products = JSON.parse(Http.responseText).DataSet.Table;
+              console.log(object.products)
+          }
+        }
+      }
+    }
+
+  }
+
+  initializeInventory(response)
+  {
+
   }
 
   initializeItems() {

@@ -35,4 +35,10 @@
     <br>
     <br>
     <hr>
+    <ion-list>
+      <ion-item *ngFor="let product of products">
+        {{ product.Artigo }}
+        {{ product.Descricao }}
+      </ion-item>
+    </ion-list>
 </ion-content>
