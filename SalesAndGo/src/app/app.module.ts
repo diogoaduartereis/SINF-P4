@@ -20,7 +20,7 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     HomePage,
     ClientPage,
     CataloguePage,
-    ListClientsPage
+    ListClientsPage,
     CheckoutPage
   ],
   imports: [
@@ -35,7 +35,7 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     HomePage,
     ClientPage,
     CataloguePage,
-    ListClientsPage
+    ListClientsPage,
     CheckoutPage
   ],
   providers: [
