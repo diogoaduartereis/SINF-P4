@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Checkout</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<!-- searchable or just dropdown? 
+     guardar este id do cliente selecionado p usar mais a frente -->
+<ion-content padding>
+  <!-- items - should include previously selected quantity; 
+             buttons to increase or decrease quantity take into account stock available; 
+             updated information is passed to final function 
+             possible to delete items 
+             <button style="float:left; width:50%; height:35px;" ion-button color="light">
+            <ion-icon name="arrow-dropup"></ion-icon>
+    </button>
+            -->
+  <ion-list>
+    <ion-item *ngFor="let product of products">
+      <img src="https://images-na.ssl-images-amazon.com/images/I/71xjaZ8OhoL._SL1500_.jpg" style="width:30%; height:30%; display:block; margin-left: auto; margin-right:auto;">
+      <br>
+      <h2 style="text-align:center;">{{ product.Descricao }}</h2>
+      
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Select client</ion-label>
+      <ion-select [(ngModel)]="client">
+        <ion-option *ngFor="let client of clients" [value]="client">{{client.Cliente}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-card>
+    <ion-card-header>
+      Order Details
+    </ion-card-header>
+    <ion-list>
+      <ion-item>
+        <ion-icon name='home' item-start></ion-icon>
+        <h3>Shipping Address</h3>
+        <p>Rua A</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name='cash' item-start></ion-icon>
+        <h3>Total</h3>
+        <p>€6.23</p>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row flex-wrap: nowrap align-items-center justify-content-center>
+      <ion-col>
+        <!-- create budget/create document for budget ORC -->
+        <button ion-button round small icon-start (click)="insertDocumento($event, 'ORC')" style="margin-bottom: 1em; margin-left: 0.65em;">
+          <ion-icon name="paper"></ion-icon>
+          Get Budget
+        </button>
+      </ion-col>
+      <ion-col>
+        <!-- confirm order/create document for order ECL -->
+        <button ion-button round small icon-start (click)="insertDocumento($event, 'ECL')" style="margin-bottom: 1em; margin-left: 0.65em;">
+          <ion-icon name="cart"></ion-icon>
+          Confirm Order
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
