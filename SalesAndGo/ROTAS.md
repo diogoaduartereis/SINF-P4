@@ -1,3 +1,26 @@
+## Obter Token de Autenticação
+
+- Request:
+```
+POST {{apiUrl}}token
+
+username:{{username}}
+password:{{password}}
+company:{{company}}
+instance:{{instance}}
+grant_type:{{grandType}}
+line:{{line}}
+```
+
+- Response:
+```
+{
+    "access_token": "[ACCESS_TOKEN]",
+    "token_type": "bearer",
+    "expires_in": 1199
+} 
+```
+
 ## Nome, Telefone e Morada do Cliente
 
 - Request:
@@ -101,7 +124,6 @@ GET {{apiUrl}}Base/Clientes/LstClientes
 - Request
 ```
 POST {{apiUrl}}Base/Clientes/Actualiza
-```
 
 {
     "Cliente": "NUNOA",
@@ -119,13 +141,14 @@ POST {{apiUrl}}Base/Clientes/Actualiza
     "Pais": "ES",
     "Moeda": "EUR"
 }
+```
 
 - Response
 ``` 
 Status 204 No Content 
 ```
 
-## Total de Faturação de todo os Clientes
+## Total de Faturação de todos os Clientes
 
 - Request
 ```
@@ -314,7 +337,7 @@ POST {{apiUrl}}Administrador/Consulta
 
 - Request
 ```
-{{apiUrl}}Base/Artigos/DaValorAtributo/[NOME_ARTIGO]/Descricao
+GET {{apiUrl}}Base/Artigos/DaValorAtributo/[NOME_ARTIGO]/Descricao
 ```
 
 - Response
@@ -441,7 +464,7 @@ Clientes C ON C.Vendedor = V.Vendedor ORDER BY V.Vendedor
 ```
 POST {{apiUrl}}Administrador/Consulta
 
-"SELECT V.Vendedor, V.Nome, C.Cliente FROM Vendedores V INNER JOIN Clientes C ON C.Vendedor = V.Vendedor WHERE C.Vendedor = '1' ORDER BY V.Vendedor"
+"SELECT V.Vendedor, V.Nome, C.Cliente FROM Vendedores V INNER JOIN Clientes C ON C.Vendedor = V.Vendedor WHERE C.Vendedor = [ID_VENDEDOR] ORDER BY V.Vendedor"
 ```
 
 - Response

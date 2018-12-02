@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import { HttpClient,HttpHeaders} from '@angular/common/http';
+import { CallNumber } from '@ionic-native/call-number';
+import { PrimaveraProvider } from '../../providers/primavera/primavera';
 
 
 /**
@@ -15,42 +16,36 @@ import { HttpClient,HttpHeaders} from '@angular/common/http';
 @Component({
   selector: 'page-client',
   templateUrl: 'client.html',
+  providers: [PrimaveraProvider]
 })
 export class ClientPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,  public http: HttpClient) {
+  client: object = {};
+  total_faturacao: number;
+  total_orcamento: number;
+  access_token: string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private callNumber: CallNumber,
+              public primavera: PrimaveraProvider) {
+    let Cliente = navParams.get('cid');
+
+    const access_token = primavera.genAccessToken();
+
+    let query = `SELECT C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda, C.Notas
+                   FROM Clientes C
+                   WHERE C.Cliente = '` + Cliente + `'`;
+    
+    this.client = primavera.postRequest(access_token,'http://94.60.211.16:2018/WebApi/Administrador/Consulta', 200, query)[0];
+
+    query = `SELECT CD.Entidade, SUM(CD.TotalDocumento) AS TotalFaturacao FROM
+             CabecDoc CD INNER JOIN Clientes C ON C.Cliente = CD.Entidade INNER
+             JOIN DocumentosVenda DV ON DV.Documento = CD.TipoDoc WHERE
+             DV.TipoDocumento = 4 AND C.Cliente = '` + Cliente + `' GROUP BY CD.Entidade`;
+    
+    this.total_faturacao = primavera.postRequest(access_token,'http://94.60.211.16:2018/WebApi/Administrador/Consulta', 200, query)[0].TotalFaturacao;
   }
 
-  insertDocumentoVenda(event: any){
-    let document,linha1,linha2;
-    let linhas = [];
-    linha1={
-      Artigo:"A0001",
-      Quantidade:55
-    }
-    linha2={
-      Artigo:"A0002",
-      Quantidade:55
-    }
-    linhas.push(linha1);
-    linhas.push(linha2);
-    document = {
-      Linhas:linhas,
-      Tipodoc: "FA",
-      Serie: "A",
-      Entidade: "C0003",
-      TipoEntidade: "C"
-    }
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': 'Bearer ewlcPs7W2Kj727wttW7BTA80I4CghHOeOkrYBxoW7IjSOQY4GvosnPzZndftqeU0trTtj6vekjHtCZYoLnSKXpJJut4Hhp37MVeDqhCednn4mBL-vPUWeMiMsi6ovzBIjUTxuTVOlfSoTzJYMHDQ6KqIJFflU_D-msUP-w6oruN0HvoCbd31R0Vyqgs-ixeuLtrcfyquHb24h0CDo8BU1VMeig5g3KLSVmugs-qadV3evVeAKhjUHW6V08HAFe8WjVQbj8I7w_xfYrLbZWNgSVZxFYNiPKT6z025MEyDnx9ffCo_7P_S-yaHuc3q1aLK'
-      })
-    };
-    this.http.post("http://localhost:2018/WebApi/Vendas/Docs/CreateDocument/", document,httpOptions)
-    .subscribe(response => console.log(response));
-    
-  
+  callClient(num_tel){
+    this.callNumber.callNumber(num_tel, true).then(res => console.log('Launched dialer!', res)).catch(err => console.log('Error launching dialer', err));
   }
 }
