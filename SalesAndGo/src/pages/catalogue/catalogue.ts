@@ -37,14 +37,18 @@ export class CataloguePage {
       if(this.readyState==4 && this.status==200){
         let response = JSON.parse(xhttp.responseText)
         const Http = new XMLHttpRequest();
-        const url = 'http://94.60.211.16:2018/WebApi/Base/Artigos/LstArtigos'
-        Http.open("GET", url);
+        const url = 'http://94.60.211.16:2018/WebApi/Administrador/Consulta'
+        Http.open("POST", url);
         Http.setRequestHeader("Content-type", "application/json; charset=utf-8");
         Http.setRequestHeader("Authorization", 'Bearer ' + response.access_token);
-        Http.send()
+        const query = `SELECT A.Artigo, A.Descricao, A.Observacoes, AM.PVP1, VAM.StkActual, AM.Moeda 
+                       from Artigo A INNER JOIN ArtigoMoeda AM 
+                       ON A.Artigo = AM.Artigo join V_INV_ArtigoArmazem VAM 
+                       on A.artigo = VAM.artigo`;
+        Http.send(JSON.stringify(query))
         Http.onreadystatechange=function(){
           if(this.readyState==4 && this.status==200){
-              object.products = JSON.parse(Http.responseText).DataSet.Table;
+            object.products = JSON.parse(Http.responseText).DataSet.Table;
           }
         }
       }
