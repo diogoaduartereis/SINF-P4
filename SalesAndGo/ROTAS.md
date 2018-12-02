@@ -1,3 +1,26 @@
+## Obter Token de Autenticação
+
+- Request:
+```
+POST {{apiUrl}}token
+
+username:{{username}}
+password:{{password}}
+company:{{company}}
+instance:{{instance}}
+grant_type:{{grandType}}
+line:{{line}}
+```
+
+- Response:
+```
+{
+    "access_token": "[ACCESS_TOKEN]",
+    "token_type": "bearer",
+    "expires_in": 1199
+} 
+```
+
 ## Nome, Telefone e Morada do Cliente
 
 - Request:
