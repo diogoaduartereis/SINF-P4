@@ -1,0 +1,35 @@
+<!--
+  Generated template for the ListClientsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>List Clients</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let client of clients" (click)="openClient(client.Cliente)">
+        <ion-item>
+          <h2>{{client.nome}}</h2>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="primary" (click)="startCart($event,client.Cliente)">
+            <ion-icon name="cart"></ion-icon>
+            Cart
+          </button>
+          <button *ngIf="client.Fac_Tel" ion-button color="secondary" (click)="callClient($event,client.Fac_Tel)">
+            <ion-icon name="call"></ion-icon>
+            Call
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+  </ion-list>
+</ion-content>

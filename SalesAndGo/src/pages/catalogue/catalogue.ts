@@ -30,7 +30,6 @@ export class CataloguePage {
     xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
     xhttp.send(params)
 
-    var response;
     let object = this;
 
     xhttp.onreadystatechange=function(){
