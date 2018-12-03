@@ -21,7 +21,7 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     ClientPage,
     CataloguePage,
     ListClientsPage,
-    CheckoutPage
+    CheckoutPage,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +36,7 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     ClientPage,
     CataloguePage,
     ListClientsPage,
-    CheckoutPage
+    CheckoutPage,
   ],
   providers: [
     StatusBar,

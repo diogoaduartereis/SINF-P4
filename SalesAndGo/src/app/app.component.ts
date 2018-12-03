@@ -26,7 +26,7 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Catalogue', component: CataloguePage },
       { title: 'List Clients', component: ListClientsPage },
-      { title: 'Checkout', component: CheckoutPage}
+      { title: 'Checkout', component: CheckoutPage},
     ];
 
   }

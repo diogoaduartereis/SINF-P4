@@ -14,18 +14,19 @@
              buttons to increase or decrease quantity take into account stock available; 
              updated information is passed to final function 
              possible to delete items 
-             <button style="float:left; width:50%; height:35px;" ion-button color="light">
-            <ion-icon name="arrow-dropup"></ion-icon>
-    </button>
             -->
-  <ion-list>
-    <ion-item *ngFor="let product of products">
-      <img src="https://images-na.ssl-images-amazon.com/images/I/71xjaZ8OhoL._SL1500_.jpg" style="width:30%; height:30%; display:block; margin-left: auto; margin-right:auto;">
-      <br>
-      <h2 style="text-align:center;">{{ product.Descricao }}</h2>
-      
-    </ion-item>
-  </ion-list>
+<ion-list>
+  <ion-item *ngFor="let product of products">
+    <img src="https://images-na.ssl-images-amazon.com/images/I/71xjaZ8OhoL._SL1500_.jpg" style="width:30%; height:30%; display:block; margin-left: auto; margin-right:auto;">
+    <br>
+    <h2 style="text-align:center;">{{ product.Descricao }}</h2>
+    <div padding style="display:flex; align-items: center">
+      <ion-icon name="arrow-dropleft"></ion-icon>
+      <h3 style="text-align:center;">2/{{product.Quantidade}}</h3>
+      <ion-icon name="arrow-dropright"></ion-icon>
+    </div>
+  </ion-item>
+</ion-list>
 
   <ion-list>
     <ion-item>
