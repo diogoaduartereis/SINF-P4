@@ -1,3 +1,75 @@
 page-home {
 
+    ion-grid {margin-top: 1em}
+
+    ion-scroll {margin-top: 0.8em}
+
+    .button {
+    //background: red; 
+    //color: white;
+    //padding: 3px;
+    //border-radius: 20px;
+    border: 0.15em solid white;
+ }
+
+    /* dashboard buttons */
+    .contact-btn {
+        background: rgb(35, 144, 245);
+        margin-left: 3em;
+        width: 3.25em;
+        height: 3.25em;
+    }
+
+    .calendar-btn {
+        background: rgb(2, 192, 103);
+        margin-right: 3em;
+        width: 3.25em;
+        height: 3.25em;
+    }
+
+    .catalogue-btn {
+        background: rgb(240, 133, 12);
+        margin-left: 3em;
+        width: 3.25em;
+        height: 3.25em;
+    }
+
+    .cart-btn {
+        background: rgb(153, 0, 255);
+        margin-right: 3em;
+        width: 3.25em;
+        height: 3.25em;
+    }
+
+    .pin-btn {
+        width: 3em;
+        height: 3em;
+    }
+
+    /* dashboard icons description */
+    .customers h6 {
+        margin-top: 0.5em;
+        margin-left: 3em;
+        color: rgb(2, 69, 131);
+    }
+    
+    .calendar h6 {
+        margin-top: 0.5em;
+        margin-right: 3em;
+        color: rgb(31, 121, 79);
+    }
+
+    .catalogue h6 {
+        margin-top: 0.5em;
+        margin-left: 4em;
+        color: rgb(151, 84, 7);
+    }
+    
+    .orders h6 {
+        margin-top: 0.5em;
+        margin-right: 4em;
+        color: rgb(70, 13, 109);
+    }
+
+
 }

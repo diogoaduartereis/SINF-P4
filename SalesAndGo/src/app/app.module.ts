@@ -8,6 +8,7 @@ import { ClientPage } from '../pages/client/client';
 import { CataloguePage } from '../pages/catalogue/catalogue';
 import { CheckoutPage } from '../pages/checkout/checkout';
 import { ListClientsPage } from '../pages/list-clients/list-clients';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,7 +22,8 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     ClientPage,
     CataloguePage,
     ListClientsPage,
-    CheckoutPage
+    CheckoutPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     ClientPage,
     CataloguePage,
     ListClientsPage,
-    CheckoutPage
+    CheckoutPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
