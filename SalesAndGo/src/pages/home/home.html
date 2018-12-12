@@ -3,16 +3,143 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Sales&Go</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <h2 text-center>Dashboard</h2>
+  <ion-grid text-center>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+    <ion-row>
+      <ion-col>
+        <button ion-button large round icon-only class="contact-btn">
+          <ion-icon name="contact"></ion-icon>
+        </button>
+        <div class="customers">
+          <h6>CUSTOMERS</h6>
+        </div>
+      </ion-col>
+      <ion-col>
+        <button ion-button large round icon-only class="calendar-btn">
+          <ion-icon name="calendar"></ion-icon>
+        </button>
+        <div class="calendar">
+          <h6>CALENDAR</h6>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button large round icon-only class="catalogue-btn">
+          <ion-icon name="list-box"></ion-icon>
+        </button>
+        <div class="catalogue">
+          <h6>CATALOGUE</h6>
+        </div>
+      </ion-col>
+      <ion-col>
+        <button ion-button large round icon-only class="cart-btn">
+          <ion-icon name="cart"></ion-icon>
+        </button>
+        <div class="orders">
+          <h6>ORDERS</h6>
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <h2 text-center>Next appointments</h2>
+  <ion-scroll scrollY="true" style="height: 40%">
+
+    <ion-grid text-center>
+
+      <!-- first card -->
+      <ion-card style="height: 10em">
+        <ion-row>
+          <ion-col style="width: 66%">
+            <ion-item>
+              <ion-icon name="time" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
+              <h2 style="font-weight: bold; color: rgb(0, 204, 126);">20 min</h2>
+              <p>Avenida dos Aliados, Porto</p>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="contact" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
+              <h2>Meet David Reis</h2>
+              <p>Praça da Liberdade 126, 4000-322 Porto</p>
+            </ion-item>
+          </ion-col>
+
+          <ion-col style="width: 34%">
+            <ion-fab right top>
+              <button ion-fab class="pin-btn">
+                <ion-icon name="pin"></ion-icon>
+              </button>
+            </ion-fab>
+            <img style="margin-top: 0.4em" src="https://img.freepik.com/free-vector/road-map-with-pointers-in-flat-style_23-2147789378.jpg?size=338c&ext=jpg">
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+      <!-- second card -->
+      <ion-card style="height: 10em">
+        <ion-row>
+          <ion-col style="width: 66%">
+            <ion-item>
+              <ion-icon name="time" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
+              <h2 style="font-weight: bold; color: rgb(0, 204, 126);">20 min</h2>
+              <p>Avenida dos Aliados, Porto</p>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="contact" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
+              <h2>Meet David Reis</h2>
+              <p>Praça da Liberdade 126, 4000-322 Porto</p>
+            </ion-item>
+          </ion-col>
+
+          <ion-col style="width: 34%">
+            <ion-fab right top>
+              <button ion-fab class="pin-btn">
+                <ion-icon name="pin"></ion-icon>
+              </button>
+            </ion-fab>
+            <img style="margin-top: 0.4em" src="https://img.freepik.com/free-vector/road-map-with-pointers-in-flat-style_23-2147789378.jpg?size=338c&ext=jpg">
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+      <!-- third card -->
+      <ion-card style="height: 10em">
+        <ion-row>
+          <ion-col style="width: 66%">
+            <ion-item>
+              <ion-icon name="time" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
+              <h2 style="font-weight: bold; color: rgb(0, 204, 126);">20 min</h2>
+              <p>Avenida dos Aliados, Porto</p>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="contact" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
+              <h2>Meet David Reis</h2>
+              <p>Praça da Liberdade 126, 4000-322 Porto</p>
+            </ion-item>
+          </ion-col>
+
+          <ion-col style="width: 34%">
+            <ion-fab right top>
+              <button ion-fab class="pin-btn">
+                <ion-icon name="pin"></ion-icon>
+              </button>
+            </ion-fab>
+            <img style="margin-top: 0.4em" src="https://img.freepik.com/free-vector/road-map-with-pointers-in-flat-style_23-2147789378.jpg?size=338c&ext=jpg">
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+    </ion-grid>
+  </ion-scroll>
+
+  <!--<button ion-button secondary menuToggle>Toggle Menu</button>-->
 </ion-content>
