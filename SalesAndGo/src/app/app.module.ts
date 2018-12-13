@@ -8,9 +8,10 @@ import { ClientPage } from '../pages/client/client';
 import { CataloguePage } from '../pages/catalogue/catalogue';
 import { CheckoutPage } from '../pages/checkout/checkout';
 import { ListClientsPage } from '../pages/list-clients/list-clients';
+import { CalendarModule } from 'ionic3-calendar-en';
+import { CalendarPage } from '../pages/calendar/calendar';
 import { LoginPage } from '../pages/login/login';
 
-import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CallNumber } from '@ionic-native/call-number';
 import { PrimaveraProvider } from '../providers/primavera/primavera';
@@ -23,12 +24,14 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     CataloguePage,
     ListClientsPage,
     CheckoutPage,
+    CalendarPage,
     LoginPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp, {scrollAssist: false, autoFocusAssist: false}),
+    CalendarModule,
     HttpClientModule,
   ],
   bootstrap: [IonicApp],
@@ -39,10 +42,10 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     CataloguePage,
     ListClientsPage,
     CheckoutPage,
+    CalendarPage,
     LoginPage
   ],
   providers: [
-    StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CallNumber,
