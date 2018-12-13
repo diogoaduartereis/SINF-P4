@@ -30,8 +30,8 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
   imports: [
     BrowserModule,
     HttpClientModule,
+    IonicModule.forRoot(MyApp, {scrollAssist: false, autoFocusAssist: false}),
     CalendarModule,
-    IonicModule.forRoot(MyApp),
     HttpClientModule,
   ],
   bootstrap: [IonicApp],
