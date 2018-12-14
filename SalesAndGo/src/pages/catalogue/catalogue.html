@@ -29,14 +29,17 @@
       
     <button ion-button icon-start block outline (click)="showCheckbox()"> Filter </button>
     <br>
-    <button style="float:right;" ion-button icon-start color="dark" clear> <ion-icon name = "arrow-round-up" ></ion-icon></button>
+    <button style="float:right;" ion-button icon-start color="dark" (click)=toggle() clear> 
+      <ion-icon id="arrowUp" name="arrow-round-up" *ngIf="!visible"></ion-icon>
+      <ion-icon id="arrowDown" name="arrow-round-down" *ngIf="visible"></ion-icon>
+    </button>
     <button style="float:right;" ion-button color="light" (click)="showCheckboxSort()"> {{sortValue}} </button>
     <br>
     <br>
     <br>
     <hr>
     <ion-list id = "productsListID">
-      <ion-item id ="" *ngFor="let product of products">
+      <ion-item *ngFor="let product of products" id="Pencil">
         <img src = "http://94.60.211.16:8080/images/{{product.Observacoes}}" style="width:40%; height:40%; display:block; margin-left: auto; margin-right:auto;">
         <h1 style="text-align:center; margin:8px;">{{ product.Descricao }}</h1>
         <button style="float:left; width:50%; height:35px;" ion-button color="light">
@@ -45,5 +48,4 @@
         <h2 style = "float:right;margin:12px;">Stock: {{product.StkActual}}</h2>
       </ion-item>
     </ion-list>
-    <hr>
 </ion-content>
