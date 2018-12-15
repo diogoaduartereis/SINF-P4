@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Sales&Go</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="list-avatar-page">
+  <ion-list>
+
+    <ion-list-header mt-2>Order Information</ion-list-header>
+
+    <ion-item>
+      <strong>Identification:</strong> {{document.Documento}}
+    </ion-item>
+
+    <ion-item>
+      <strong>Status:</strong>
+
+      <span id="status">
+        <span>{{document.Estado === 'P'? 'Waiting':''}}</span>
+        <span>{{document.Estado === 'T'? 'Completed':''}}</span>
+        <span>{{document.Estado === 'R'? 'Nullified':''}}</span>
+      </span>
+
+    </ion-item>
+
+    <ion-item>
+      <strong>Date:</strong> {{document.Data | date: 'dd/MM/yyyy' }}
+    </ion-item>
+
+    <ion-item>
+      <strong>Client:</strong> {{document.Nome}}
+    </ion-item>
+
+    <ion-item>
+      <strong>Localidade:</strong> {{document.CodPostalLocalidade}}
+    </ion-item>
+
+    <ion-item>
+      <strong>Contribuinte:</strong> {{document.NumContribuinte}}
+    </ion-item>
+
+    <ion-item>
+      <strong>Modo Pagamento:</strong> {{document.ModoPag}}
+    </ion-item>
+
+    <ion-item>
+      <strong>Total:</strong> {{document.TotalDocumento}}€
+    </ion-item>
+
+
+  </ion-list>
+
+  <ion-list>
+
+    <ion-list-header>Order Details</ion-list-header>
+
+    <ion-grid>
+      <ion-row style="background: #f7f5f5">
+        <ion-col col-3>
+          <strong>Artigo</strong>
+        </ion-col>
+        <ion-col col-2>
+          <strong>Quant.</strong>
+        </ion-col>
+        <ion-col col-2>
+          <strong>Preco Unit.</strong>
+        </ion-col>
+        <ion-col col-2>
+          <strong>Preco Liquido</strong>
+        </ion-col>
+        <ion-col col-3>
+          <strong>Preco Total</strong>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let linha of linhas">
+        <ion-col col-3>{{ linha.Artigo }}</ion-col>
+        <ion-col col-2>{{ linha.Quantidade }}</ion-col>
+        <ion-col col-2>{{ linha.PrecUnit }}€</ion-col>
+        <ion-col col-2>{{ linha.PrecoLiquido }}€</ion-col>
+        <ion-col col-3>{{ linha.PrecoLiquido + linha.TotalIva}}€</ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+    <ion-item>
+
+    </ion-item>
+  </ion-list>
+
+</ion-content>

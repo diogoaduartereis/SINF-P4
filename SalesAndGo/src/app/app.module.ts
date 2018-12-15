@@ -11,6 +11,8 @@ import { ListClientsPage } from '../pages/list-clients/list-clients';
 import { CalendarModule } from 'ionic3-calendar-en';
 import { CalendarPage } from '../pages/calendar/calendar';
 import { LoginPage } from '../pages/login/login';
+import { OrdersPage } from '../pages/orders/orders';
+import { OrderPage } from '../pages/order/order';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CallNumber } from '@ionic-native/call-number';
@@ -25,7 +27,9 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     ListClientsPage,
     CheckoutPage,
     CalendarPage,
-    LoginPage
+    LoginPage,
+    OrdersPage,
+    OrderPage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,10 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     ListClientsPage,
     CheckoutPage,
     CalendarPage,
-    LoginPage
+    LoginPage,
+    OrdersPage,
+    OrderPage
+
   ],
   providers: [
     SplashScreen,
