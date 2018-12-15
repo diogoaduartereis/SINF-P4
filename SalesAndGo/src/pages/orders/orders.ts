@@ -18,9 +18,10 @@ import { PrimaveraProvider } from '../../providers/primavera/primavera';
 })
 export class OrdersPage {
 
-  myInput:any;
+  myInput: any;
   date: any;
   status: any;
+  type:any;
   access_token: string;
   docs: {};
 
@@ -32,9 +33,9 @@ export class OrdersPage {
 
     const access_token = primavera.genAccessToken();
 
-    const query = `SELECT CD.Data, CD.NumDoc, CD.TotalDocumento, CD.Nome,
-        CDS.Estado FROM CabecDoc CD INNER JOIN CabecDocStatus CDS ON CDS.IdCabecDoc = CD.Id AND CD.TipoDoc='ECL'`;
-     
+    const query = `SELECT CD.Data, CD.TipoDoc, CD.Documento, CD.NumDoc, CD.TotalDocumento, CD.Nome,
+        CDS.Estado FROM CabecDoc CD INNER JOIN CabecDocStatus CDS ON CDS.IdCabecDoc = CD.Id WHERE CD.TipoDoc='ECL' OR CD.TipoDoc='ORC'`;
+
     this.docs = primavera.postRequest(access_token, '/Administrador/Consulta', 200, query);
 
     console.log(this.docs);
@@ -44,17 +45,17 @@ export class OrdersPage {
     this.savedData = JSON.parse(JSON.stringify(this.originalData));
   }
 
-  resetData() {  
+  resetData() {
     this.modifiedData = JSON.parse(JSON.stringify(this.originalData));
   }
 
   filterData() {
-    
+
     this.resetData();
-      
+
     if (this.status != null) {
       this.modifiedData = this.modifiedData.filter((doc) => {
-        return doc.Estado === this.status; 
+        return doc.Estado === this.status;
       });
     }
 
@@ -64,8 +65,14 @@ export class OrdersPage {
       });
     }
 
+    if (this.type != null) {
+      this.modifiedData = this.modifiedData.filter((doc) => {
+        return doc.TipoDoc == this.type;
+      });
+    }
+
     this.savedData = JSON.parse(JSON.stringify(this.modifiedData));
-  
+
     if (this.myInput != null && this.myInput.trim() !== '') {
       this.modifiedData = this.modifiedData.filter((doc) => {
         return doc.Nome.toLowerCase().includes(this.myInput.toLowerCase());
@@ -73,38 +80,38 @@ export class OrdersPage {
     }
 
   }
- 
+
   filterItems(ev: any) {
- 
+
     let val = ev.target.value;
-    
+
     this.modifiedData = this.savedData;
-    
+
     if (val && val.trim() !== '') {
-      this.modifiedData = this.modifiedData.filter(function(doc) {
+      this.modifiedData = this.modifiedData.filter(function (doc) {
         return doc.Nome.toLowerCase().includes(val.toLowerCase());
       });
     }
   }
 
-  orderData(){
-    
-    if(document.getElementById('sort').classList.contains('down')){
-      this.modifiedData.sort(function(a, b){return Date.parse(a.Data) - Date.parse(b.Data)});
+  orderData() {
+
+    if (document.getElementById('sort').classList.contains('down')) {
+      this.modifiedData.sort(function (a, b) { return Date.parse(a.Data) - Date.parse(b.Data) });
       document.getElementById('sort').classList.remove('down');
       document.getElementById('sort').classList.add('up');
 
-      document.getElementById('down').style.display='none';
-      document.getElementById('up').style.display='block';
+      document.getElementById('down').style.display = 'none';
+      document.getElementById('up').style.display = 'block';
 
-    }else{
-      this.modifiedData.sort(function(a, b){return Date.parse(b.Data) - Date.parse(a.Data)});
+    } else {
+      this.modifiedData.sort(function (a, b) { return Date.parse(b.Data) - Date.parse(a.Data) });
 
       document.getElementById('sort').classList.remove('up');
       document.getElementById('sort').classList.add('down');
 
-      document.getElementById('up').style.display='none';
-      document.getElementById('down').style.display='block';
+      document.getElementById('up').style.display = 'none';
+      document.getElementById('down').style.display = 'block';
     }
 
   }

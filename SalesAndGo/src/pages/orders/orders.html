@@ -22,6 +22,18 @@
           <ion-label>Date:</ion-label>
           <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="date"></ion-datetime>
         </ion-item>
+
+        <ion-item>
+          <ion-icon name="md-settings" item-start>
+          </ion-icon>
+          <ion-label>Type</ion-label>
+          <ion-select [(ngModel)]="type">
+
+            <ion-option value="ORC">Orcamento</ion-option>
+            <ion-option value="ECL">Encomenda</ion-option>
+          </ion-select>
+
+        </ion-item>
         <ion-item>
           <ion-icon name="md-checkbox-outline" item-start>
           </ion-icon>
@@ -34,42 +46,43 @@
           </ion-select>
 
         </ion-item>
+
         <ion-item>
           <ion-icon name="md-person" item-start>
           </ion-icon>
-          <ion-searchbar  [(ngModel)]="myInput" placeholder="Client Name" showCancelButton color="danger" (ionInput)="filterItems($event)"></ion-searchbar>
+          <ion-searchbar [(ngModel)]="myInput" placeholder="Client Name" showCancelButton color="danger" (ionInput)="filterItems($event)"></ion-searchbar>
         </ion-item>
       </ion-list>
       <button style="margin-top:20px" class="gray" ion-button color="light" (click)="filterData()" block>
         Filter results
       </button>
     </ion-card-content>
-  
+
   </ion-card>
-<div text-right>
-  <button id="sort" class="down" (click)="orderData()" ion-button color="dark" clear>
-    <div id="down">
+  <div text-right>
+    <button id="sort" class="down" (click)="orderData()" ion-button color="dark" clear>
+      <div id="down">
         <ion-icon name="md-arrow-dropdown-circle"></ion-icon>
       </div>
-    <div style="display:none" id="up">
-    <ion-icon name="md-arrow-dropup-circle"></ion-icon>
+      <div style="display:none" id="up">
+        <ion-icon name="md-arrow-dropup-circle"></ion-icon>
+      </div>
+    </button>
   </div>
-  </button>
-</div>
   <!-- encomenda -->
   <ion-card *ngFor="let doc of modifiedData">
-    <ion-item> 
-         
+    <ion-item>
+
       <ion-icon *ngIf="doc.Estado === 'R'" style="color:rgb(223, 151, 130)" name="ios-close-circle" item-start large></ion-icon>
       <ion-icon *ngIf="doc.Estado === 'P'" style="color:#94b3e7; display:inline" name="ios-time" item-start large></ion-icon>
-      <ion-icon *ngIf="doc.Estado === 'T'"  style="color:#B6D7A8" name="ios-checkmark-circle" item-start large></ion-icon>
+      <ion-icon *ngIf="doc.Estado === 'T'" style="color:#B6D7A8" name="ios-checkmark-circle" item-start large></ion-icon>
 
       <ion-card style=" margin:0;width: calc(100% );border-style: solid;border-width: 1px;border-color: rgb(231, 231, 231);">
         <ion-card-header>
-          <h2>     
-            <strong>{{doc.Data | date: 'dd/MM/yyyy' }} </strong>     
-          </h2> 
- 
+          <h2>
+            <strong>{{doc.Data | date: 'dd/MM/yyyy' }} </strong>
+          </h2>
+
         </ion-card-header>
         <ion-card-content>
           <ion-row align-items-center>
@@ -77,12 +90,12 @@
               <div>
                 <strong>Order ID:</strong>
               </div>
-              <div>#{{doc.NumDoc}}</div>
+              <div>#{{doc.Documento}}</div>
             </ion-col>
             <ion-col>
               <div>
                 <strong>Amount:</strong>
-              </div> 
+              </div>
               <div>{{doc.TotalDocumento}}€</div>
             </ion-col>
             <ion-col>
@@ -91,40 +104,19 @@
               </div>
               <div>{{doc.Nome}}</div>
 
-              <!--<ng-container *ngIf="doc.Estado === 'P'; else elseif1">
-
-                <div style="color:#94b3e7">Waiting</div>-->
-                <!-- pendente -->
- 
-              <!--</ng-container>
-              <ng-template #elseif1>
-                <ng-container *ngIf="doc.Estado === 'T'; else elseif2">
-
-                  <span style="color:#B6D7A8">Completed</span>-->
-                  <!-- transformado -->
-
-               <!-- </ng-container>
-              </ng-template>
-              <ng-template #elseif2>
-                <ng-container *ngIf="doc.Estado === 'R'">
-                  <span style="color:rgb(223, 151, 130)">Nullified</span>-->
-                  <!-- anulado -->
-               <!-- </ng-container>
-              </ng-template>-->
-
             </ion-col>
           </ion-row>
         </ion-card-content>
         <div style="padding:5px" text-center>
           <div padding-horizontal>
-            <button block ion-button color="light" (click)="openOrder(doc.NumDoc)">View Order</button>
+            <button block ion-button color="light" (click)="openOrder(doc.Documento)">View Order</button>
           </div>
         </div>
       </ion-card>
     </ion-item>
   </ion-card>
 
-   
+
 </ion-content>
 
 <ion-footer>

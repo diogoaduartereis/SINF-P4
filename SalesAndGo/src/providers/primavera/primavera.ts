@@ -11,6 +11,8 @@ import { Injectable } from '@angular/core';
 export class PrimaveraProvider {
 
   webApi : string = 'http://localhost:2018/WebApi';
+  resp: object[] = [];
+
 
   constructor(public http: HttpClient) {
     console.log('Hello PrimaveraProvider Provider');
@@ -60,6 +62,8 @@ export class PrimaveraProvider {
 
     return response;
   }
+
+  
 
   getRequest(access_token, url, expectedResponse = 200){
     if (url[0] != '/'){
