@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PrimaveraProvider {
 
-  webApi : string = 'http://localhost:2018/WebApi';
+  webApi : string = 'http://94.60.211.16:2018/WebApi';
   resp: object[] = [];
 
 
