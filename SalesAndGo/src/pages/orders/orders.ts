@@ -22,7 +22,7 @@ export class OrdersPage {
   date: any;
   status: any;
   access_token: string;
-  docs: object[] = [];
+  docs: {};
 
   originalData: any;
   modifiedData: any;
@@ -35,7 +35,7 @@ export class OrdersPage {
     const query = `SELECT CD.Data, CD.NumDoc, CD.TotalDocumento, CD.Nome,
         CDS.Estado FROM CabecDoc CD INNER JOIN CabecDocStatus CDS ON CDS.IdCabecDoc = CD.Id AND CD.TipoDoc='ECL'`;
      
-    this.docs = primavera.postRequest2(access_token, '/Administrador/Consulta', 200, query);
+    this.docs = primavera.postRequest(access_token, '/Administrador/Consulta', 200, query);
 
     console.log(this.docs);
 

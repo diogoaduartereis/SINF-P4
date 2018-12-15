@@ -10,9 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PrimaveraProvider {
 
-  webApi : string = 'http://94.60.211.16:2018/WebApi';
-  resp: object[] = [];
-
+  webApi : string = 'http://localhost:2018/WebApi';
 
   constructor(public http: HttpClient) {
     console.log('Hello PrimaveraProvider Provider');
@@ -62,33 +60,6 @@ export class PrimaveraProvider {
 
     return response;
   }
-
-  postRequest2(access_token, url, expectedResponse = 200, data){
-    if (url[0] != '/'){
-      url = '/' + url;
-    }
-
-    const Http = new XMLHttpRequest();
-    Http.open("POST", this.webApi + url, false);
-    Http.setRequestHeader("Content-type", "application/json; charset=utf-8");
-    Http.setRequestHeader("Authorization", 'Bearer ' + access_token);
-
-    let response = {};
-
-    Http.onreadystatechange=function(){
-      if(this.readyState==4 && this.status==expectedResponse){
-        response = JSON.parse(Http.responseText).DataSet.Table;
-      }else{
-        console.log(Http.responseText);
-      }
-    }
-
-    Http.send(JSON.stringify(data));
-
-    this.resp = response;
-    return this.resp;
-  }
-
 
   getRequest(access_token, url, expectedResponse = 200){
     if (url[0] != '/'){
