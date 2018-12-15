@@ -29,8 +29,8 @@
           <ion-label>Type</ion-label>
           <ion-select [(ngModel)]="type">
 
-            <ion-option value="ORC">Orcamento</ion-option>
-            <ion-option value="ECL">Encomenda</ion-option>
+            <ion-option value="ORC">Budget</ion-option>
+            <ion-option value="ECL">Order</ion-option>
           </ion-select>
 
         </ion-item>
@@ -42,7 +42,7 @@
 
             <ion-option value="T">Completed</ion-option>
             <ion-option value="P">Waiting</ion-option>
-            <ion-option value="R">Nullified</ion-option>
+            <ion-option value="R">Canceled</ion-option>
           </ion-select>
 
         </ion-item>
@@ -58,7 +58,7 @@
       </button>
     </ion-card-content>
 
-  </ion-card>
+  </ion-card> 
   <div text-right>
     <button id="sort" class="down" (click)="orderData()" ion-button color="dark" clear>
       <div id="down">

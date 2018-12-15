@@ -62,8 +62,7 @@ export class PrimaveraProvider {
 
     return response;
   }
-
-  
+ 
 
   getRequest(access_token, url, expectedResponse = 200){
     if (url[0] != '/'){
