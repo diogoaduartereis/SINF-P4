@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { PrimaveraProvider } from '../../providers/primavera/primavera';
+import { CheckoutPage} from '../checkout/checkout';
+import { ProductPage } from '../product/product';
 
 /**
  * Generated class for the CataloguePage page.
@@ -24,7 +26,6 @@ export class CataloguePage {
     this.navCtrl.setRoot(HomePage)
   }
 
-
   searchQuery: string = '';
   items: string[] = [];
   sortValue: string = 'PVP1';
@@ -34,6 +35,7 @@ export class CataloguePage {
   families: string[] = [];
   familiesArray: string[] = [];
   originalProducts: string[] = [];
+  checkoutProducts: string[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
               public primavera: PrimaveraProvider) 
@@ -56,33 +58,23 @@ export class CataloguePage {
     }  
   }
 
-  initializeItems() {
-    this.items = [
-      'Amsterdam',
-      'Bogota',
-      '1'
-    ];
-  }
-
-  finalizeItems() {
-    this.items = [];
-  }
-
+  //Searchbar products
+  beforeSearchProducts = [];
   getItems(ev: any) {
-    // Reset items back to all of the items
-  
+    
+    if(this.beforeSearchProducts.length == 0)
+      this.beforeSearchProducts = this.products;
     // set val to the value of the searchbar
     const val = ev.target.value;
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.initializeItems();
-      this.items = this.items.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      this.products = this.products.filter((item) => {
+        return (item['Descricao'].toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
     else
-      this.finalizeItems();
+      this.products = this.beforeSearchProducts;
   }
 
   ionViewDidLoad() {
@@ -289,5 +281,39 @@ export class CataloguePage {
     });
     alert.present();
   }
+
+  //Add to cart
+  orderLength = 0;
+  addProductToCart(elem)
+  {
+    this.checkoutProducts.push(elem);
+    this.orderLength++;
+  }
+
+  //infinite scroll through the items
+  /*doInfinite(infiniteScroll) {
+
+    setTimeout(() => {
+      for (let i = 0; i < 30; i++) {
+        this.products.push( this.products.length );
+      }
+
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 500);
+  }*/
   
+  public goToCheckout(event, checkoutProducts)
+  {
+    this.navCtrl.push(CheckoutPage,{
+      products: checkoutProducts
+      });
+  }
+
+  goToProductPage(event, product)
+  {
+    this.navCtrl.push(ProductPage,{
+      product: product
+      });
+  }
 }

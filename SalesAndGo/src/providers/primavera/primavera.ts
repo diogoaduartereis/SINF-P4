@@ -48,7 +48,7 @@ export class PrimaveraProvider {
     Http.setRequestHeader("Content-type", "application/json; charset=utf-8");
     Http.setRequestHeader("Authorization", 'Bearer ' + access_token);
 
-    let response = {};
+    let response = [];
 
     Http.onreadystatechange=function(){
       if(this.readyState==4 && this.status==expectedResponse){

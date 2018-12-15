@@ -13,6 +13,7 @@ import { CalendarPage } from '../pages/calendar/calendar';
 import { LoginPage } from '../pages/login/login';
 import { OrdersPage } from '../pages/orders/orders';
 import { OrderPage } from '../pages/order/order';
+import { ProductPage} from '../pages/product/product';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CallNumber } from '@ionic-native/call-number';
@@ -29,7 +30,8 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     CalendarPage,
     LoginPage,
     OrdersPage,
-    OrderPage
+    OrderPage,
+    ProductPage
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     CalendarPage,
     LoginPage,
     OrdersPage,
-    OrderPage
+    OrderPage,
+    ProductPage
 
   ],
   providers: [

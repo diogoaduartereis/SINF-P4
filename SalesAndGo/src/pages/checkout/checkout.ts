@@ -19,8 +19,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class CheckoutPage {
   clients:any=[];
   token: string;
-  products:any=[{Descricao:"Marcador"},{Descricao:"Pencil"}];
+  //products:any=[{Descricao:"Marcador"},{Descricao:"Pencil"}];
+  products:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public http: HttpClient) {
+    this.products = navParams.get('products');
+    console.log(this.products);
+
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", 'http://94.60.211.16:2018/WebApi/token', true);
     var params = 'username=FEUP&password=qualquer1&company=BELAFLOR&instance=DEFAULT&grant_type=password&line=professional';
@@ -45,12 +49,12 @@ export class CheckoutPage {
             classthis.clients = response.DataSet.Table;
             console.log(classthis.clients);
           });
-        // get products
+       /* // get products
         classthis.http.get("http://94.60.211.16:2018/WebApi/Base/Artigos/LstArtigos", options)
           .subscribe((response : any) => { 
             classthis.products = response.DataSet.Table;
             console.log(classthis.products);
-          });
+          });*/
       }
     }
   }
