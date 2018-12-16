@@ -19,10 +19,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class CheckoutPage {
   clients:any=[];
   token: string;
-  products:any=[{Descricao:"Marcador"},{Descricao:"Pencil"}];
+  products:any=[];
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public http: HttpClient) {
     const xhttp = new XMLHttpRequest();
-    xhttp.open("POST", 'http://localhost:2018/WebApi/token', true);
+    xhttp.open("POST", 'http://94.60.211.16:2018/WebApi/token', true);
     var params = 'username=FEUP&password=qualquer1&company=BELAFLOR&instance=DEFAULT&grant_type=password&line=professional';
     xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
     xhttp.send(params);
@@ -40,13 +40,13 @@ export class CheckoutPage {
         };
         // get clients
         let query = `"SELECT V.Vendedor, V.Nome, C.Cliente FROM Vendedores V INNER JOIN Clientes C ON C.Vendedor = V.Vendedor WHERE C.Vendedor = '1' ORDER BY V.Vendedor"`;
-        classthis.http.post("http://localhost:2018/WebApi/Administrador/Consulta", query, options)
+        classthis.http.post("http://94.60.211.16:2018/WebApi/Administrador/Consulta", query, options)
           .subscribe((response : any) => {
             classthis.clients = response.DataSet.Table;
             console.log(classthis.clients);
           });
         // get products
-        classthis.http.get("http://localhost:2018/WebApi/Base/Artigos/LstArtigos", options)
+        classthis.http.get("http://94.60.211.16:2018/WebApi/Base/Artigos/LstArtigos", options)
           .subscribe((response : any) => { 
             classthis.products = response.DataSet.Table;
             console.log(classthis.products);
@@ -84,7 +84,7 @@ export class CheckoutPage {
         'Authorization': 'Bearer ' + this.token,
       })
     };
-    this.http.post("http://localhost:2018/WebApi/Vendas/Docs/CreateDocument/", document, httpOptions)
+    this.http.post("http://94.60.211.16:2018/WebApi/Vendas/Docs/CreateDocument/", document, httpOptions)
       .subscribe(response => console.log(response));
   }
 }
