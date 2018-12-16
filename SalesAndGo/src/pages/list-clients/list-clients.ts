@@ -4,6 +4,8 @@ import { AlertController } from 'ionic-angular';
 import { ClientPage } from '../client/client';
 import { CallNumber } from '@ionic-native/call-number';
 import { PrimaveraProvider } from '../../providers/primavera/primavera';
+import { AddClientPage } from '../add-client/add-client';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the ListClientsPage page.
@@ -54,6 +56,16 @@ export class ListClientsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListClientsPage');
+  }
+
+  createNewClient()
+  {
+    this.navCtrl.setRoot(AddClientPage);
+  }
+
+  goToHomePage()
+  {
+    this.navCtrl.setRoot(HomePage)
   }
 
 }

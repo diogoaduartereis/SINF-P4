@@ -14,6 +14,7 @@ import { LoginPage } from '../pages/login/login';
 import { OrdersPage } from '../pages/orders/orders';
 import { OrderPage } from '../pages/order/order';
 import { ProductPage} from '../pages/product/product';
+import { AddClientPage } from '../pages/add-client/add-client';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CallNumber } from '@ionic-native/call-number';
@@ -31,7 +32,8 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     LoginPage,
     OrdersPage,
     OrderPage,
-    ProductPage
+    ProductPage,
+    AddClientPage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     LoginPage,
     OrdersPage,
     OrderPage,
-    ProductPage
+    ProductPage,
+    AddClientPage
 
   ],
   providers: [
