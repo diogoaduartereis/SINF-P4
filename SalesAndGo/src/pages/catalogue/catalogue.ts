@@ -5,6 +5,7 @@ import { HomePage } from '../home/home';
 import { PrimaveraProvider } from '../../providers/primavera/primavera';
 import { CheckoutPage} from '../checkout/checkout';
 import { ProductPage } from '../product/product';
+import { ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the CataloguePage page.
@@ -38,7 +39,7 @@ export class CataloguePage {
   checkoutProducts: string[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-              public primavera: PrimaveraProvider) 
+              public primavera: PrimaveraProvider, private toastCtrl: ToastController) 
   {
 
     const access_token = primavera.genAccessToken();
@@ -286,8 +287,26 @@ export class CataloguePage {
   orderLength = 0;
   addProductToCart(elem)
   {
-    this.checkoutProducts.push(elem);
-    this.orderLength++;
+    if(elem.StkActual > 0)
+    {
+      this.checkoutProducts.push(elem);
+      elem.StkActual--;
+      this.orderLength++;
+      let toast = this.toastCtrl.create({
+        message: 'Product added to order',
+        duration: 1500,
+        position: 'top'
+      });
+      toast.present();
+    }
+    else
+    {
+      let alert = this.alertCtrl.create({
+        title: 'Product out of stock',
+        buttons: ['Dismiss']
+      });
+      alert.present()
+    }
   }
 
   //infinite scroll through the items
