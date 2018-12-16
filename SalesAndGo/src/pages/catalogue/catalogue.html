@@ -10,7 +10,7 @@
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title (click)="goToHomePage()" style="display:inline-block; margin-top:10px;">Sales&Go</ion-title>
+    <ion-title (click)="goToHomePage()" style="display:inline-block; margin-top:12px;">Sales&Go</ion-title>
     <button ion-button icon-only (click)="goToCheckout($event, checkoutProducts)" style="float:right; margin-top:8px;" clear>
       <ion-icon name = "card"><h4 *ngIf="orderLength > 0" style="display:inline;">{{orderLength}}</h4></ion-icon>
     </button>
@@ -43,7 +43,7 @@
     <hr>
     <ion-list id = "productsListID">
       <ion-item *ngFor="let product of products">
-        <img src = "http://94.60.211.16:8080/images/{{product.Observacoes}}" 
+        <img src = "http://94.60.211.16:8080/images/{{product.CDU_CampoVar1}}" 
              style="width:40%; height:40%; display:block; margin-left: auto; margin-right:auto;"
              (click)="goToProductPage($event, product)">
         <h1 style="text-align:center; margin:8px;">{{ product.Descricao }}</h1>

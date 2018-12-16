@@ -43,7 +43,7 @@ export class CataloguePage {
 
     const access_token = primavera.genAccessToken();
 
-    let query = `SELECT A.Artigo, A.Descricao, A.Observacoes, A.familia,
+    let query = `SELECT A.Artigo, A.CDU_CampoVar1, A.Descricao, A.Observacoes, A.familia,
                   AM.PVP1, VAM.StkActual, AM.Moeda 
                   from Artigo A INNER JOIN ArtigoMoeda AM 
                   ON A.Artigo = AM.Artigo join V_INV_ArtigoArmazem VAM 
