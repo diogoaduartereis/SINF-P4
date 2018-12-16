@@ -38,6 +38,23 @@ export class PrimaveraProvider {
     return access_token;
   }
 
+  createClient(access_token, body)
+  {
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.open("POST", this.webApi + '/Base/Clientes/Actualiza', false);
+    xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    xhttp.setRequestHeader("Authorization", 'Bearer ' + access_token);
+
+    xhttp.onreadystatechange=function(){
+      if(this.readyState==4 && this.status==200){
+        console.log(this.responseText);
+      }
+    }
+
+    xhttp.send( JSON.stringify(body));
+  }
+
   postRequest(access_token, url, expectedResponse = 200, data){
     if (url[0] != '/'){
       url = '/' + url;

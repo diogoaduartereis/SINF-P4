@@ -15,8 +15,30 @@
   
   </ion-header>
   
-
-
 <ion-content padding>
 
+    <form (ngSubmit)="createClient()">
+      <ion-item>
+        <ion-label>Name</ion-label>
+        <ion-input type="text" [(ngModel)]="Name" name="Name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Descricao</ion-label>
+        <ion-input type="text" [(ngModel)]="Descricao" name="Descricao"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Morada</ion-label>
+        <ion-input type="text" [(ngModel)]="Morada" name="Morada"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Localidade</ion-label>
+        <ion-input type="text" [(ngModel)]="Localidade" name="Localidade"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>NumContribuinte</ion-label>
+        <ion-input type="text" [(ngModel)]="NumContribuinte" name="NumContribuinte"></ion-input>
+      </ion-item>
+      <br>
+      <button ion-button type="submit" block>Create new client</button>
+    </form>
 </ion-content>

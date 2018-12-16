@@ -24,7 +24,7 @@ export class CataloguePage {
 
   goToHomePage()
   {
-    this.navCtrl.setRoot(HomePage)
+    this.navCtrl.setRoot(HomePage);
   }
 
   searchQuery: string = '';
