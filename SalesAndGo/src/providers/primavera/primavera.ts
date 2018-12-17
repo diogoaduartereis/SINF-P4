@@ -11,6 +11,8 @@ import { Injectable } from '@angular/core';
 export class PrimaveraProvider {
 
   webApi : string = 'http://94.60.211.16:2018/WebApi';
+  resp: any[] = [];
+
 
   constructor(public http: HttpClient) {
     console.log('Hello PrimaveraProvider Provider');
@@ -20,7 +22,7 @@ export class PrimaveraProvider {
     const xhttp = new XMLHttpRequest();
 
     xhttp.open("POST", this.webApi + '/token', false);
-    var params = 'username=FEUP&password=qualquer1&company=BELAFLOR&instance=DEFAULT&grant_type=password&line=professional';
+    var params = 'username=FEUP&password=qualquer1&company=SALESANDGO&instance=DEFAULT&grant_type=password&line=professional';
     xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
     
     let access_token = "";
@@ -36,7 +38,29 @@ export class PrimaveraProvider {
     return access_token;
   }
 
-  postRequest(access_token, url, expectedResponse = 200, data) : object[]{
+  createClient(access_token, body)
+  {
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.open("POST", this.webApi + '/Base/Clientes/Actualiza', false);
+    xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    xhttp.setRequestHeader("Authorization", 'Bearer ' + access_token);
+
+    let response = 0;
+
+    xhttp.onreadystatechange=function(){
+      if(this.readyState==4 && this.status==204){
+        response=1;
+      }
+      else
+        response = 0;
+    }
+
+    xhttp.send( JSON.stringify(body));
+    return response;
+  }
+
+  postRequest(access_token, url, expectedResponse = 200, data) : any[]{
     if (url[0] != '/'){
       url = '/' + url;
     }
@@ -46,7 +70,7 @@ export class PrimaveraProvider {
     Http.setRequestHeader("Content-type", "application/json; charset=utf-8");
     Http.setRequestHeader("Authorization", 'Bearer ' + access_token);
 
-    let response = {};
+    let response = [];
 
     Http.onreadystatechange=function(){
       if(this.readyState==4 && this.status==expectedResponse){
@@ -61,6 +85,7 @@ export class PrimaveraProvider {
 
     return response as object[];
   }
+ 
 
   getRequest(access_token, url, expectedResponse = 200) : object[]{
     if (url[0] != '/'){

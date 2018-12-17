@@ -10,9 +10,9 @@
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title (click)="goToHomePage()" style="display:inline-block; margin-top:10px;">Sales&Go</ion-title>
-    <button ion-button icon-only style="float:right;" clear>
-      <ion-icon name = "card"></ion-icon>
+    <ion-title (click)="goToHomePage()" style="display:inline-block; margin-top:12px;">Sales&Go</ion-title>
+    <button ion-button icon-only (click)="goToCheckout($event, checkoutProducts)" style="float:right; margin-top:8px;" clear>
+      <ion-icon name = "card"><h4 *ngIf="orderLength > 0" style="display:inline;">{{orderLength}}</h4></ion-icon>
     </button>
   </ion-navbar>
 
@@ -21,6 +21,9 @@
 
 <ion-content padding>
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <div *ngIf="searching" class="spinner-container">
+      <ion-spinner></ion-spinner>
+    </div>
     <ion-list>
       <ion-item *ngFor="let item of items">
         {{ item }}
@@ -33,19 +36,26 @@
       <ion-icon id="arrowUp" name="arrow-round-up" *ngIf="!visible"></ion-icon>
       <ion-icon id="arrowDown" name="arrow-round-down" *ngIf="visible"></ion-icon>
     </button>
-    <button style="float:right;" ion-button color="light" (click)="showCheckboxSort()"> {{sortValue}} </button>
+    <button style="float:right;" ion-button color="light" (click)="showCheckboxSort()"> {{sortType}} </button>
     <br>
     <br>
     <br>
     <hr>
     <ion-list id = "productsListID">
-      <ion-item *ngFor="let product of products" id="Pencil">
-        <img src = "http://94.60.211.16:8080/images/{{product.Observacoes}}" style="width:40%; height:40%; display:block; margin-left: auto; margin-right:auto;">
+      <ion-item *ngFor="let product of products">
+        <img src = "http://94.60.211.16:8080/images/{{product.CDU_CampoVar1}}" 
+             style="width:40%; height:40%; display:block; margin-left: auto; margin-right:auto;"
+             (click)="goToProductPage($event, product)">
         <h1 style="text-align:center; margin:8px;">{{ product.Descricao }}</h1>
-        <button style="float:left; width:50%; height:35px;" ion-button color="light">
+        <button (click)="addProductToCart(product)" style="float:left; width:50%; height:35px;" ion-button color="light">
           <h2 style="margin:auto;"><b>{{ product.PVP1 }} {{ product.Moeda }} &emsp;<ion-icon name="cart"></ion-icon></b></h2>
         </button>
         <h2 style = "float:right;margin:12px;">Stock: {{product.StkActual}}</h2>
       </ion-item>
     </ion-list>
+    <!--<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>-->
 </ion-content>
+
+<nav-tabs></nav-tabs>

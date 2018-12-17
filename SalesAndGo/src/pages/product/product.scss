@@ -1,0 +1,7 @@
+page-product {
+    .noScroll {
+        ::-webkit-scrollbar {
+                            display: none !important;
+                        }
+    }
+}

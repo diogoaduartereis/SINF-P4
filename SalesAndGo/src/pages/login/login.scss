@@ -4,14 +4,14 @@ page-login {
         font-weight: bold; 
         font-size: 2em; 
         color: rgb(78, 78, 78);
-        padding-top: 5em;
-        padding-left: 2em;
+        padding-top: 1em;
+        padding-left: 1.9em;
     }
 
     h3 {
         font-size: 1.6em; 
         color: rgba(128, 128, 128, 0.849);
-        padding-top: 0.5em;
+        padding-top: 0.3em;
         padding-left: 2.5em;
     }
 
@@ -19,5 +19,24 @@ page-login {
         text-align: center;
     }
 
-    
+    .button {
+        width: 18.5em;
+        height: 3.5em;
+        border-radius: 6px;
+        margin-top: 2em;
+        margin-left: 3.2em;
+    }
+
+   .fields {
+       max-width: 70% ;
+       margin-left: 3em;
+       padding: 0em;  
+   }
+
+   .input-cover {position: static;}
+
+ 
+     
+  
+
 }

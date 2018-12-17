@@ -9,7 +9,7 @@ import { CataloguePage} from '../pages/catalogue/catalogue';
 import { CheckoutPage } from '../pages/checkout/checkout';
 import { CalendarPage } from '../pages/calendar/calendar';
 import { LoginPage } from '../pages/login/login';
-
+import { OrdersPage } from '../pages/orders/orders';
 
 @Component({
   templateUrl: 'app.html'
@@ -31,7 +31,8 @@ export class MyApp {
       { title: 'List Clients', component: ListClientsPage },
       { title: 'Checkout', component: CheckoutPage },
       { title: 'Calendar', component: CalendarPage },
-      { title: 'Login', component: LoginPage }
+      { title: 'Login', component: LoginPage },
+      { title: 'Orders', component: OrdersPage}
     ];
 
   }

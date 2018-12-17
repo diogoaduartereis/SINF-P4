@@ -31,6 +31,8 @@ export class ClientPage {
 
     const access_token = primavera.genAccessToken();
 
+    console.log(access_token);
+
     let query = `SELECT C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda, C.Notas
                    FROM Clientes C
                    WHERE C.Cliente = '` + Cliente + `'`;
@@ -42,7 +44,11 @@ export class ClientPage {
              JOIN DocumentosVenda DV ON DV.Documento = CD.TipoDoc WHERE
              DV.TipoDocumento = 4 AND C.Cliente = '` + Cliente + `' GROUP BY CD.Entidade`;
     
-    this.total_faturacao = primavera.postRequest(access_token,'/Administrador/Consulta', 200, query)[0].TotalFaturacao;
+    this.total_faturacao = 0;
+    let result = primavera.postRequest(access_token,'/Administrador/Consulta', 200, query)[0];
+    if(result){
+      this.total_faturacao = result.TotalFaturacao;
+    }
   }
 
   callClient(num_tel){

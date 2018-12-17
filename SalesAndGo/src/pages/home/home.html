@@ -14,15 +14,15 @@
 
     <ion-row>
       <ion-col>
-        <button ion-button large round icon-only class="contact-btn">
+        <button ion-button large round icon-only class="contact-btn" (click)="openClients()">
           <ion-icon name="contact"></ion-icon>
         </button>
-        <div class="customers">
-          <h6>CUSTOMERS</h6>
+        <div class="clients">
+          <h6>CLIENTS</h6>
         </div>
       </ion-col>
       <ion-col>
-        <button ion-button large round icon-only class="calendar-btn">
+        <button ion-button large round icon-only class="calendar-btn" (click)="openCalendar()">
           <ion-icon name="calendar"></ion-icon>
         </button>
         <div class="calendar">
@@ -33,7 +33,7 @@
 
     <ion-row>
       <ion-col>
-        <button ion-button large round icon-only class="catalogue-btn">
+        <button ion-button large round icon-only class="catalogue-btn" (click)="openCatalogue()">
           <ion-icon name="list-box"></ion-icon>
         </button>
         <div class="catalogue">
@@ -41,7 +41,7 @@
         </div>
       </ion-col>
       <ion-col>
-        <button ion-button large round icon-only class="cart-btn">
+        <button ion-button large round icon-only class="cart-btn" (click)="openCheckout()">
           <ion-icon name="cart"></ion-icon>
         </button>
         <div class="orders">

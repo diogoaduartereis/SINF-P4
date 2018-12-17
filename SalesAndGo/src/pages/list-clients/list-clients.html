@@ -6,30 +6,40 @@
 -->
 
 <ion-header>
-  <ion-navbar>
+  <ion-navbar style="display:inline-flex;">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List Clients</ion-title>
+    <ion-title (click)="goToHomePage()">Sales&Go</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list>
     <ion-item-sliding *ngFor="let client of clients" (click)="openClient(client.Cliente)">
-        <ion-item>
-          <h2>{{client.nome}}</h2>
-        </ion-item>
-        <ion-item-options side="right">
-          <button ion-button color="primary" (click)="startCart($event,client.Cliente)">
-            <ion-icon name="cart"></ion-icon>
-            Cart
-          </button>
-          <button *ngIf="client.Fac_Tel" ion-button color="secondary" (click)="callClient($event,client.Fac_Tel)">
-            <ion-icon name="call"></ion-icon>
-            Call
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
+      <ion-item>
+        <h2>{{client.nome}}</h2>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="startCart($event,client.Cliente)">
+          <ion-icon name="cart"></ion-icon>
+          Cart
+        </button>
+        <button *ngIf="client.Fac_Tel" ion-button color="secondary" (click)="callClient($event,client.Fac_Tel)">
+          <ion-icon name="call"></ion-icon>
+          Call
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
+
+
+  <ion-fab bottom right style="padding-bottom: 6em; padding-right: 1.8em">
+    <button (click)="createNewClient()" ion-fab>
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
 </ion-content>
+
+<nav-tabs></nav-tabs>
