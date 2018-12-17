@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { ClientPage } from '../client/client';
 import { CallNumber } from '@ionic-native/call-number';
+import { PrimaveraProvider } from '../../providers/primavera/primavera';
+import { AddClientPage } from '../add-client/add-client';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the ListClientsPage page.
@@ -15,43 +18,22 @@ import { CallNumber } from '@ionic-native/call-number';
 @Component({
   selector: 'page-list-clients',
   templateUrl: 'list-clients.html',
+  providers: [PrimaveraProvider]
 })
 export class ListClientsPage {
   //@ViewChild("myNavTabs") myNavTabs: NavTabsComponent;
 
   clients: object[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private callNumber: CallNumber) {
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("POST", 'http://94.60.211.16:2018/WebApi/token', true);
-    var params = 'username=FEUP&password=qualquer1&company=BELAFLOR&instance=DEFAULT&grant_type=password&line=professional';
-    xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
-    xhttp.send(params)
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private callNumber: CallNumber,
+              public primavera: PrimaveraProvider) {
 
-    let object = this;
+    const access_token = primavera.genAccessToken();
 
-    xhttp.onreadystatechange=function(){
-      if(this.readyState==4 && this.status==200){
-        let response = JSON.parse(xhttp.responseText)
-        const Http = new XMLHttpRequest();
-        const url = 'http://94.60.211.16:2018/WebApi/Administrador/Consulta'
-        Http.open("POST", url);
-        Http.setRequestHeader("Content-type", "application/json; charset=utf-8");
-        Http.setRequestHeader("Authorization", 'Bearer ' + response.access_token);
-        const query = `SELECT C.Cliente, C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda 
-                       FROM Clientes C`;
-        Http.send(JSON.stringify(query))
-        Http.onreadystatechange=function(){
-          if(this.readyState==4 && this.status==200){
-            object.clients = JSON.parse(Http.responseText).DataSet.Table;
-          }else{
-            console.log(Http.responseText);
-          }
-        }
-      }else{
-        console.log(xhttp.responseText);
-      }
-    }
+    const query = `SELECT C.Cliente, C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda 
+    FROM Clientes C`;
+
+    this.clients = primavera.postRequest(access_token, '/Administrador/Consulta', 200, query);
   }
 
   callClient(event,num_tel){
@@ -75,6 +57,16 @@ export class ListClientsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListClientsPage');
+  }
+
+  createNewClient()
+  {
+    this.navCtrl.push(AddClientPage);
+  }
+
+  goToHomePage()
+  {
+    this.navCtrl.setRoot(HomePage);
   }
 
 }

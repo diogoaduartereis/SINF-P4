@@ -37,14 +37,14 @@ export class ClientPage {
                    FROM Clientes C
                    WHERE C.Cliente = '` + Cliente + `'`;
     
-    this.client = primavera.postRequest(access_token,'http://94.60.211.16:2018/WebApi/Administrador/Consulta', 200, query)[0];
+    this.client = primavera.postRequest(access_token,'/Administrador/Consulta', 200, query)[0];
 
     query = `SELECT CD.Entidade, SUM(CD.TotalDocumento) AS TotalFaturacao FROM
              CabecDoc CD INNER JOIN Clientes C ON C.Cliente = CD.Entidade INNER
              JOIN DocumentosVenda DV ON DV.Documento = CD.TipoDoc WHERE
              DV.TipoDocumento = 4 AND C.Cliente = '` + Cliente + `' GROUP BY CD.Entidade`;
     
-    this.total_faturacao = primavera.postRequest(access_token,'http://94.60.211.16:2018/WebApi/Administrador/Consulta', 200, query)[0].TotalFaturacao;
+    this.total_faturacao = primavera.postRequest(access_token,'/Administrador/Consulta', 200, query)[0].TotalFaturacao;
   }
 
   callClient(num_tel){

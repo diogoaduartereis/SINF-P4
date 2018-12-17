@@ -1,0 +1,128 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Sales&Go</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="cards-bg main">
+
+  <!-- search/filter -->
+  <ion-card style="text-align:center">
+    <ion-card-header>
+      <strong> Search </strong>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-icon name="md-calendar" item-start></ion-icon>
+          <ion-label>Date:</ion-label>
+          <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="date"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="md-settings" item-start>
+          </ion-icon>
+          <ion-label>Type</ion-label>
+          <ion-select [(ngModel)]="type">
+
+            <ion-option value="ORC">Budget</ion-option>
+            <ion-option value="ECL">Order</ion-option>
+          </ion-select>
+
+        </ion-item>
+        <ion-item>
+          <ion-icon name="md-checkbox-outline" item-start>
+          </ion-icon>
+          <ion-label>Status</ion-label>
+          <ion-select [(ngModel)]="status">
+
+            <ion-option value="T">Completed</ion-option>
+            <ion-option value="P">Waiting</ion-option>
+            <ion-option value="R">Canceled</ion-option>
+          </ion-select>
+
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="md-person" item-start>
+          </ion-icon>
+          <ion-searchbar [(ngModel)]="myInput" placeholder="Client Name" showCancelButton color="danger" (ionInput)="filterItems($event)"></ion-searchbar>
+        </ion-item>
+      </ion-list>
+      <button style="margin-top:20px" class="gray" ion-button color="light" (click)="filterData()" block>
+        Filter results
+      </button>
+    </ion-card-content>
+
+  </ion-card> 
+  <div text-right>
+    <button id="sort" class="down" (click)="orderData()" ion-button color="dark" clear>
+      <div id="down">
+        <ion-icon name="md-arrow-dropdown-circle"></ion-icon>
+      </div>
+      <div style="display:none" id="up">
+        <ion-icon name="md-arrow-dropup-circle"></ion-icon>
+      </div>
+    </button>
+  </div>
+  <!-- encomenda -->
+  <ion-card *ngFor="let doc of modifiedData">
+    <ion-item>
+
+      <ion-icon *ngIf="doc.Estado === 'R'" style="color:rgb(223, 151, 130)" name="ios-close-circle" item-start large></ion-icon>
+      <ion-icon *ngIf="doc.Estado === 'P'" style="color:#94b3e7; display:inline" name="ios-time" item-start large></ion-icon>
+      <ion-icon *ngIf="doc.Estado === 'T'" style="color:#B6D7A8" name="ios-checkmark-circle" item-start large></ion-icon>
+
+      <ion-card style=" margin:0;width: calc(100% );border-style: solid;border-width: 1px;border-color: rgb(231, 231, 231);">
+        <ion-card-header>
+          <h2>
+            <strong>{{doc.Data | date: 'dd/MM/yyyy' }} </strong>
+          </h2>
+
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row align-items-center>
+            <ion-col>
+              <div>
+                <strong>Order ID:</strong>
+              </div>
+              <div>#{{doc.Documento}}</div>
+            </ion-col>
+            <ion-col>
+              <div>
+                <strong>Amount:</strong>
+              </div>
+              <div>{{doc.TotalDocumento}}€</div>
+            </ion-col>
+            <ion-col>
+              <div>
+                <strong>Client:</strong>
+              </div>
+              <div>{{doc.Nome}}</div>
+
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+        <div style="padding:5px" text-center>
+          <div padding-horizontal>
+            <button block ion-button color="light" (click)="openOrder(doc.Documento)">View Order</button>
+          </div>
+        </div>
+      </ion-card>
+    </ion-item>
+  </ion-card>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar style="padding:15px;">
+    <button style="background:#94b3e7" ion-button color="secondary" block>
+      New Order
+    </button>
+  </ion-toolbar>
+</ion-footer>

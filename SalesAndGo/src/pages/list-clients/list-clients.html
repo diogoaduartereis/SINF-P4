@@ -6,11 +6,11 @@
 -->
 
 <ion-header>
-  <ion-navbar>
+  <ion-navbar style="display:inline-flex;">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List Clients</ion-title>
+    <ion-title (click)="goToHomePage()">Sales&Go</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -33,14 +33,9 @@
     </ion-item-sliding>
   </ion-list>
 
-  <!--<ion-fab bottom right style="padding-bottom: 6em; padding-right: 1.5em">
-    <button ion-fab fab-bottom fab-right>
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-fab>-->
 
   <ion-fab bottom right style="padding-bottom: 6em; padding-right: 1.8em">
-    <button ion-fab>
+    <button (click)="createNewClient()" ion-fab>
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>

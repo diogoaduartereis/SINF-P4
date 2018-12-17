@@ -10,6 +10,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PrimaveraProvider {
 
+  webApi : string = 'http://94.60.211.16:2018/WebApi';
+  resp: object[] = [];
+
+
   constructor(public http: HttpClient) {
     console.log('Hello PrimaveraProvider Provider');
   }
@@ -17,8 +21,8 @@ export class PrimaveraProvider {
   genAccessToken(){
     const xhttp = new XMLHttpRequest();
 
-    xhttp.open("POST", 'http://94.60.211.16:2018/WebApi/token', false);
-    var params = 'username=FEUP&password=qualquer1&company=BELAFLOR&instance=DEFAULT&grant_type=password&line=professional';
+    xhttp.open("POST", this.webApi + '/token', false);
+    var params = 'username=FEUP&password=qualquer1&company=SALESANDGO&instance=DEFAULT&grant_type=password&line=professional';
     xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
     
     let access_token = "";
@@ -34,13 +38,39 @@ export class PrimaveraProvider {
     return access_token;
   }
 
+  createClient(access_token, body)
+  {
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.open("POST", this.webApi + '/Base/Clientes/Actualiza', false);
+    xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    xhttp.setRequestHeader("Authorization", 'Bearer ' + access_token);
+
+    let response = 0;
+
+    xhttp.onreadystatechange=function(){
+      if(this.readyState==4 && this.status==204){
+        response=1;
+      }
+      else
+        response = 0;
+    }
+
+    xhttp.send( JSON.stringify(body));
+    return response;
+  }
+
   postRequest(access_token, url, expectedResponse = 200, data){
+    if (url[0] != '/'){
+      url = '/' + url;
+    }
+
     const Http = new XMLHttpRequest();
-    Http.open("POST", url, false);
+    Http.open("POST", this.webApi + url, false);
     Http.setRequestHeader("Content-type", "application/json; charset=utf-8");
     Http.setRequestHeader("Authorization", 'Bearer ' + access_token);
 
-    let response = {};
+    let response = [];
 
     Http.onreadystatechange=function(){
       if(this.readyState==4 && this.status==expectedResponse){
@@ -54,10 +84,15 @@ export class PrimaveraProvider {
 
     return response;
   }
+ 
 
   getRequest(access_token, url, expectedResponse = 200){
+    if (url[0] != '/'){
+      url = '/' + url;
+    }
+
     const Http = new XMLHttpRequest();
-    Http.open("GET", url, false);
+    Http.open("GET", this.webApi + url, false);
     Http.setRequestHeader("Content-type", "application/json; charset=utf-8");
     Http.setRequestHeader("Authorization", 'Bearer ' + access_token);
 
