@@ -17,6 +17,7 @@ import { CallNumber } from '@ionic-native/call-number';
   templateUrl: 'list-clients.html',
 })
 export class ListClientsPage {
+  //@ViewChild("myNavTabs") myNavTabs: NavTabsComponent;
 
   clients: object[] = [];
 

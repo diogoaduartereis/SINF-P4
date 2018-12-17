@@ -1,0 +1,42 @@
+nav-tabs {
+
+    .container {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .button {
+        height: 3em;
+        border: 0.15em solid white;
+    }
+
+    .home-btn {
+        background: rgb(201, 11, 138);
+        width: 3em;
+        height: 3em;
+    }
+
+    .contact-btn {
+        background: rgb(35, 144, 245);
+        width: 3em;
+        height: 3em;
+    }
+
+    .calendar-btn {
+        background: rgb(2, 192, 103);
+        width: 3em;
+        height: 3em;
+    }
+
+    .catalogue-btn {
+        background: rgb(240, 133, 12);
+        width: 3em;
+        height: 3em;
+    }
+
+    .cart-btn {
+        background: rgb(153, 0, 255);
+        width: 3em;
+        height: 3em;
+    }
+}

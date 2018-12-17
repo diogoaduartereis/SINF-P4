@@ -1,25 +1,42 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
+  <ion-toolbar color="primary" style="height: 8.5em; font-weight: bold; font-size: 2em; text-align: center;">Sales&Go</ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome back,</h2>
+
+  <h2>Welcome back!</h2>
   <h3>
-    <p>please login</p>
+    <p>Please login</p>
     <p>to your account.</p>
   </h3>
 
+  <ion-grid>
+    <ion-col>
+      <ion-list>
 
+        <ion-row>
+          <ion-item class="fields">
+            <ion-label color="primary" floating>Email</ion-label>
+            <ion-input type="email"></ion-input>
+          </ion-item>
+        </ion-row>
 
-  
+        <ion-row>
+          <ion-item class="fields">
+            <ion-label color="primary" floating>Password</ion-label>
+            <ion-input type="password"></ion-input>
+          </ion-item>
+        </ion-row>
 
-  <div class="login">
-    <button ion-button color="secondary">LOGIN</button>
-  </div>
+      </ion-list>
+
+      <ion-row>
+        <div class="login">
+          <button ion-button round>LOGIN</button>
+        </div>
+      </ion-row>
+
+    </ion-col>
+  </ion-grid>
 
 </ion-content>

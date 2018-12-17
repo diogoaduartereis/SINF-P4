@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, Component } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule } from  '@angular/common/http';
 import { MyApp } from './app.component';
@@ -11,6 +11,7 @@ import { ListClientsPage } from '../pages/list-clients/list-clients';
 import { CalendarModule } from 'ionic3-calendar-en';
 import { CalendarPage } from '../pages/calendar/calendar';
 import { LoginPage } from '../pages/login/login';
+import { ComponentsModule } from '../components/components.module';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CallNumber } from '@ionic-native/call-number';
@@ -25,7 +26,7 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     ListClientsPage,
     CheckoutPage,
     CalendarPage,
-    LoginPage
+    LoginPage,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +34,7 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     IonicModule.forRoot(MyApp, {scrollAssist: false, autoFocusAssist: false}),
     CalendarModule,
     HttpClientModule,
+    ComponentsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

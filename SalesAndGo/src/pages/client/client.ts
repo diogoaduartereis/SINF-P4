@@ -31,6 +31,8 @@ export class ClientPage {
 
     const access_token = primavera.genAccessToken();
 
+    console.log(access_token);
+
     let query = `SELECT C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda, C.Notas
                    FROM Clientes C
                    WHERE C.Cliente = '` + Cliente + `'`;
