@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { PrimaveraProvider } from '../../providers/primavera/primavera';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Md5} from 'ts-md5/dist/md5';
+import { ToastController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the AddClientPage page.
@@ -18,7 +22,19 @@ import { PrimaveraProvider } from '../../providers/primavera/primavera';
 })
 export class AddClientPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public primavera: PrimaveraProvider) {
+  addClientForm: FormGroup;
+  hash: Md5;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public primavera: PrimaveraProvider, private formBuilder: FormBuilder,private Md5: Md5,
+              public alertCtrl: AlertController, private toastCtrl: ToastController) {
+    this.addClientForm = this.formBuilder.group({
+      Nome: ['', Validators.required],
+      Morada: ['', Validators.required],
+      Telefone: ['', Validators.required],
+      NumContribuinte: ['', Validators.required],
+      Moeda: ['', Validators.required]
+    });
+    this.hash = this.Md5;
   }
 
   ionViewDidLoad() {
@@ -33,25 +49,44 @@ export class AddClientPage {
   createClient()
   {
     const access_token = this.primavera.genAccessToken();
+    let nome = this.addClientForm.value['Nome'];
+    let Morada = this.addClientForm.value['Morada'];
+    let Telefone = this.addClientForm.value['Telefone'];
+    let NumContribuinte = this.addClientForm.value['NumContribuinte'];
+    let Moeda = this.addClientForm.value['Moeda'];
+    var d = new Date();
+    var n = d.getTime();
+    let id = n.toString().substr(0, 12);
 
     const body = {
-      "Cliente": "Diogo",
-      "Nome": "Diogo",
-      "Descricao": "qwerty1234",
-      "Morada": "PASSEO DE PORTUGAL, 12345",
-      "Localidade": "VILANUEVA DE ARRIBA",
-      "CodigoPostal": "61001",
-      "LocalidadeCodigoPostal": "MADRID",
-      "Telefone": "00.034.1.474747447",
-      "Fax": "00.034.1.4374747474",
-      "EnderecoWeb": "http://alcad.es",
-      "Distrito": "",
-      "NumContribuinte": "989922456",
-      "Pais": "ES",
-      "Moeda": "EUR"
+      "Cliente": id,
+      "Nome": nome,
+      "Morada": Morada,
+      "Telefone": Telefone,
+      "NumContribuinte": NumContribuinte,
+      "Moeda": Moeda
       };
 
-    console.log(this.primavera.createClient(access_token, body));
+    if(this.primavera.createClient(access_token, body) == 1)
+    {
+      let alert = this.alertCtrl.create();
+      alert.setTitle('Cliented Successfully Created');
+
+      alert.addButton({
+        text: 'Dismiss',
+        handler: data=>{this.navCtrl.pop();}
+      })
+      alert.present();
+    }
+    else
+    {
+      let toast = this.toastCtrl.create({
+        message: 'Client Failed to be Created',
+        duration: 1500,
+        position: 'top'
+      });
+      toast.present();
+    }
   }
 
 }

@@ -22,7 +22,7 @@ export class PrimaveraProvider {
     const xhttp = new XMLHttpRequest();
 
     xhttp.open("POST", this.webApi + '/token', false);
-    var params = 'username=FEUP&password=qualquer1&company=BELAFLOR&instance=DEFAULT&grant_type=password&line=professional';
+    var params = 'username=FEUP&password=qualquer1&company=SALESANDGO&instance=DEFAULT&grant_type=password&line=professional';
     xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
     
     let access_token = "";
@@ -46,13 +46,18 @@ export class PrimaveraProvider {
     xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
     xhttp.setRequestHeader("Authorization", 'Bearer ' + access_token);
 
+    let response = 0;
+
     xhttp.onreadystatechange=function(){
-      if(this.readyState==4 && this.status==200){
-        console.log(this.responseText);
+      if(this.readyState==4 && this.status==204){
+        response=1;
       }
+      else
+        response = 0;
     }
 
     xhttp.send( JSON.stringify(body));
+    return response;
   }
 
   postRequest(access_token, url, expectedResponse = 200, data){

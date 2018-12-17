@@ -19,6 +19,7 @@ import { AddClientPage } from '../pages/add-client/add-client';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CallNumber } from '@ionic-native/call-number';
 import { PrimaveraProvider } from '../providers/primavera/primavera';
+import {Md5} from 'ts-md5/dist/md5';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { PrimaveraProvider } from '../providers/primavera/primavera';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CallNumber,
-    PrimaveraProvider
+    PrimaveraProvider,
+    Md5
   ]
 })
 export class AppModule {}

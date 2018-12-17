@@ -60,7 +60,7 @@ export class ListClientsPage {
 
   createNewClient()
   {
-    this.navCtrl.setRoot(AddClientPage);
+    this.navCtrl.push(AddClientPage);
   }
 
   goToHomePage()

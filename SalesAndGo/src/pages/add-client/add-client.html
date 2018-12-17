@@ -16,29 +16,26 @@
   </ion-header>
   
 <ion-content padding>
-
-    <form (ngSubmit)="createClient()">
-      <ion-item>
-        <ion-label>Name</ion-label>
-        <ion-input type="text" [(ngModel)]="Name" name="Name"></ion-input>
+  <form [formGroup]="addClientForm" (ngSubmit)="createClient()">
+    <ion-item>
+        <ion-input type="text" placeholder="Name" [(formControl)]="addClientForm.controls['Nome']" name="Nome"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Descricao</ion-label>
-        <ion-input type="text" [(ngModel)]="Descricao" name="Descricao"></ion-input>
+        <ion-input type="text" placeholder="Address" [(formControl)]="addClientForm.controls['Morada']" name="Morada"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Morada</ion-label>
-        <ion-input type="text" [(ngModel)]="Morada" name="Morada"></ion-input>
+        <ion-input type="number" placeholder="Cellphone Number" [(formControl)]="addClientForm.controls['Telefone']" name="Telefone"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Localidade</ion-label>
-        <ion-input type="text" [(ngModel)]="Localidade" name="Localidade"></ion-input>
+        <ion-input type="number" placeholder="Taxpayer Number" [(formControl)]="addClientForm.controls['NumContribuinte']" name="NumContribuinte"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>NumContribuinte</ion-label>
-        <ion-input type="text" [(ngModel)]="NumContribuinte" name="NumContribuinte"></ion-input>
+        <ion-select placeholder="Currency" [(formControl)]="addClientForm.controls['Moeda']" name="Moeda">
+          <ion-label>Currency</ion-label>
+          <ion-option value="EUR">EUR</ion-option>
+        </ion-select>
       </ion-item>
       <br>
-      <button ion-button type="submit" block>Create new client</button>
-    </form>
+     <button ion-button type="submit" block [disabled]="!addClientForm.valid">Create new client</button>
+  </form>
 </ion-content>
