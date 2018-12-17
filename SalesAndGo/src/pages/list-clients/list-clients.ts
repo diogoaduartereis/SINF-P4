@@ -23,7 +23,7 @@ export class ListClientsPage {
   clients: object[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private callNumber: CallNumber,
-              public primavera: PrimaveraProvider) {
+              private primavera: PrimaveraProvider) {
 
     const access_token = primavera.genAccessToken();
 

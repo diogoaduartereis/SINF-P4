@@ -36,7 +36,7 @@ export class PrimaveraProvider {
     return access_token;
   }
 
-  postRequest(access_token, url, expectedResponse = 200, data){
+  postRequest(access_token, url, expectedResponse = 200, data) : object[]{
     if (url[0] != '/'){
       url = '/' + url;
     }
@@ -51,6 +51,7 @@ export class PrimaveraProvider {
     Http.onreadystatechange=function(){
       if(this.readyState==4 && this.status==expectedResponse){
         response = JSON.parse(Http.responseText).DataSet.Table;
+        console.log(response);
       }else{
         console.log(Http.responseText);
       }
@@ -58,10 +59,10 @@ export class PrimaveraProvider {
 
     Http.send(JSON.stringify(data));
 
-    return response;
+    return response as object[];
   }
 
-  getRequest(access_token, url, expectedResponse = 200){
+  getRequest(access_token, url, expectedResponse = 200) : object[]{
     if (url[0] != '/'){
       url = '/' + url;
     }
@@ -83,6 +84,6 @@ export class PrimaveraProvider {
 
     Http.send();
 
-    return response;
+    return response as object[];
   }
 }
