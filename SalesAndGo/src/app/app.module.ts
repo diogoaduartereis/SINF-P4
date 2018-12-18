@@ -16,6 +16,7 @@ import { OrdersPage } from '../pages/orders/orders';
 import { OrderPage } from '../pages/order/order';
 import { ProductPage} from '../pages/product/product';
 import { AddClientPage } from '../pages/add-client/add-client';
+import { EditClientPage } from '../pages/edit-client/edit-client';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CallNumber } from '@ionic-native/call-number';
@@ -35,7 +36,8 @@ import {Md5} from 'ts-md5/dist/md5';
     OrdersPage,
     OrderPage,
     ProductPage,
-    AddClientPage
+    AddClientPage,
+    EditClientPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,8 @@ import {Md5} from 'ts-md5/dist/md5';
     OrdersPage,
     OrderPage,
     ProductPage,
-    AddClientPage
+    AddClientPage,
+    EditClientPage
   ],
   providers: [
     SplashScreen,

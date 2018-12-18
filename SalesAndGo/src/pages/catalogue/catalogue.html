@@ -30,13 +30,13 @@
       </ion-item>
     </ion-list>
       
-    <button ion-button icon-start block outline (click)="showCheckbox()"> Filter </button>
+    <button ion-button icon-start block outline (click)="showCheckbox()"> Filter by Family </button>
     <br>
     <button style="float:right;" ion-button icon-start color="dark" (click)=toggle() clear> 
       <ion-icon id="arrowUp" name="arrow-round-up" *ngIf="!visible"></ion-icon>
       <ion-icon id="arrowDown" name="arrow-round-down" *ngIf="visible"></ion-icon>
     </button>
-    <button style="float:right;" ion-button color="light" (click)="showCheckboxSort()"> {{sortType}} </button>
+    <button round style="float:right;" ion-button color="light" (click)="showCheckboxSort()"> {{sortType}} </button>
     <br>
     <br>
     <br>

@@ -15,12 +15,12 @@
 
 <ion-content padding>
 
-  <button ion-button style="float: right; margin-bottom: 1em; margin-right: 0.65em;">
+  <button ion-button style="float: right; margin-bottom: 1em; margin-right: 0.65em;" (click)="goToEditPage($event,client)">
     <ion-icon name="edit"></ion-icon>
     Edit
   </button>
 
-  <button ion-button style="margin-bottom: 1em; margin-left: 0.65em;">
+  <button ion-button style="margin-bottom: 1em; margin-left: 0.65em;" (click)="goToCatalogue($event,client)">
     <ion-icon name="cart"></ion-icon>
   </button>
 
@@ -97,7 +97,7 @@
               <ion-icon name="card"></ion-icon>
             </ion-col>
             <ion-col>
-              Orders: {{TotalFaturacao}} €
+              Orders: {{total_faturacao}} {{client.Moeda}}
             </ion-col>
           </ion-row>
           <ion-row align-items-center>

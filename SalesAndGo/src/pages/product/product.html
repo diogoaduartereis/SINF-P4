@@ -17,30 +17,31 @@
 
 
 <ion-content padding>
-  <div style="height: 45%;" class="noScroll">
-    <h1 style="margin-bottom:-20px; padding-left:12px;">{{ product.Descricao }}</h1>
+  <div style="height: 47%;" class="noScroll">
+    <h1 style="margin-bottom:-18px; padding-left:12px;">{{ product.Descricao }}</h1>
 
-      <ion-scroll scrollX="true" style="white-space: nowrap; height:400px; margin-bottom: auto; max-height: 100%;">
-        <img style="max-height: 80%; max-width: 80%; margin-left: auto; margin-right:auto;" 
+      <ion-scroll scrollX="true" style="white-space: nowrap; height:450px; margin-bottom: auto; max-height: 100%;">
+        <img *ngIf="product.CDU_CampoVar1" style="max-height: 80%; max-width: 80%; margin-left: auto; margin-right:auto;" 
              src = "http://94.60.211.16:8080/images/{{product.CDU_CampoVar1}}">
-        <img style="max-height: 80%; max-width: 80%; margin-left: auto; margin-right:auto;" 
-             src = "http://94.60.211.16:8080/images/{{product.CDU_CampoVar1}}">
-        <img style="max-height: 80%; max-width: 80%; margin-left: auto; margin-right:auto;" 
-             src = "http://94.60.211.16:8080/images/{{product.CDU_CampoVar1}}">
+        <img *ngIf="product.CDU_CampoVar2" style="max-height: 80%; max-width: 80%; margin-left: auto; margin-right:auto;" 
+             src = "http://94.60.211.16:8080/images/{{product.CDU_CampoVar2}}">
+        <img *ngIf="product.CDU_CampoVar3" style="max-height: 80%; max-width: 80%; margin-left: auto; margin-right:auto;" 
+             src = "http://94.60.211.16:8080/images/{{product.CDU_CampoVar3}}">
       </ion-scroll>
   </div>
   <hr>
 
-  <div style="height:50%;">
-    <ion-card style="height:100%;">
+  <div style="height:100%;" >
+    <ion-card style="height:100%; margin-bottom:100px;">
         <ion-card-header>
           <h1>Product Details</h1>
         </ion-card-header>
 
-        <ion-card-content style="max-height: 100%; overflow:scroll;">
+        <ion-card-content style="max-height: 100%;">
           <p style="white-space: pre-line;">{{product.Observacoes}}</p>
         </ion-card-content>
         
     </ion-card>
   </div>
 </ion-content>
+<nav-tabs></nav-tabs>
