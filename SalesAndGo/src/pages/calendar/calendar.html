@@ -13,10 +13,46 @@
   </ion-navbar>
 </ion-header>
 
+<ion-content>
 
-<ion-content padding>
+  <div padding>
+    <ion-calendar [events]="currentEvents" (onDaySelect)="onDaySelect($event)" #calendar></ion-calendar>
+  </div>
 
-  <ion-calendar #calendar></ion-calendar>
+  <ion-scroll scrollY="true" style="height: 50%">
+
+    <ion-grid text-center>
+
+      <!-- first card -->
+      <div *ngIf="!dispEvents.length">Porra nao ha eventos</div>
+
+      <ion-card style="height: 10em" *ngFor="let event of dispEvents">
+        <ion-row>
+          <ion-col style="width: 66%">
+            <ion-item>
+              <ion-icon name="time" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
+              <h2 style="font-weight: bold; color: rgb(0, 204, 126);">{{event.start}}</h2>
+              <p>{{event.end}}</p>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="contact" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
+              <h2>Meet {{event.client}}</h2>
+              <p>{{event.location}}</p>
+            </ion-item>
+          </ion-col>
+
+          <ion-col style="width: 34%">
+            <ion-fab right top>
+              <button ion-fab class="pin-btn">
+                <ion-icon name="pin"></ion-icon>
+              </button>
+            </ion-fab>
+            <img style="margin-top: 0.4em" src="https://img.freepik.com/free-vector/road-map-with-pointers-in-flat-style_23-2147789378.jpg?size=338c&ext=jpg">
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-grid>
+  </ion-scroll>
 
 </ion-content>
 

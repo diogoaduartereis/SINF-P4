@@ -75,7 +75,6 @@ export class PrimaveraProvider {
     Http.onreadystatechange=function(){
       if(this.readyState==4 && this.status==expectedResponse){
         response = JSON.parse(Http.responseText).DataSet.Table;
-        console.log(response);
       }else{
         console.log(Http.responseText);
       }

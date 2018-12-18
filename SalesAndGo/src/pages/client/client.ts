@@ -6,7 +6,6 @@ import { PrimaveraProvider } from '../../providers/primavera/primavera';
 import { CataloguePage } from '../catalogue/catalogue';
 import { EditClientPage } from '../edit-client/edit-client';
 
-
 /**
  * Generated class for the ClientPage page.
  *
