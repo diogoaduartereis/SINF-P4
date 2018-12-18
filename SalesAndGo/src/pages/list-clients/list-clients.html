@@ -15,8 +15,13 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-item>
+    <ion-icon name="md-person" item-start>
+    </ion-icon>
+    <ion-searchbar [(ngModel)]="myInput" placeholder="Client Name" showCancelButton color="danger" (ionInput)="filterItems($event)"></ion-searchbar>
+  </ion-item>
   <ion-list style=" margin-bottom:70px;">
-    <ion-item-sliding *ngFor="let client of clients" (click)="openClient(client.Cliente)">
+    <ion-item-sliding *ngFor="let client of modifiedData" (click)="openClient(client.Cliente)">
       <ion-item>
         <h2>{{client.nome}}</h2>
       </ion-item>
