@@ -52,6 +52,22 @@
           <ion-option value="ZAR">ZAR</ion-option>
         </ion-select>
       </ion-item>
+      <ion-item>
+        <ion-select placeholder="CondPag" [(formControl)]="addClientForm.controls['CondPag']" name="CondPag">
+          <ion-label>Payment condition</ion-label>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-select placeholder="ModoPag" [(formControl)]="addClientForm.controls['ModoPag']" name="ModoPag">
+          <ion-label>Payment Mode</ion-label>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-select placeholder="ModoRec" [(formControl)]="addClientForm.controls['ModoRec']" name="ModoRec">
+          <ion-label>Receiving Mode</ion-label>
+          
+        </ion-select>
+      </ion-item>
       <br>
      <button ion-button type="submit" block [disabled]="!addClientForm.valid">Create new client</button>
   </form>

@@ -15,28 +15,32 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-    <ion-icon name="md-person" item-start>
-    </ion-icon>
-    <ion-searchbar [(ngModel)]="myInput" placeholder="Client Name" showCancelButton color="danger" (ionInput)="filterItems($event)"></ion-searchbar>
-  </ion-item>
-  <ion-list style=" margin-bottom:70px;">
-    <ion-item-sliding *ngFor="let client of modifiedData" (click)="openClient(client.Cliente)">
-      <ion-item>
-        <h2>{{client.nome}}</h2>
-      </ion-item>
-      <ion-item-options side="right">
-        <button ion-button color="primary" (click)="startCart($event,client.Cliente)">
-          <ion-icon name="cart"></ion-icon>
-          Cart
-        </button>
-        <button *ngIf="client.Fac_Tel" ion-button color="secondary" (click)="callClient($event,client.Fac_Tel)">
-          <ion-icon name="call"></ion-icon>
-          Call
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+  <div ion-fixed style="height:10%; padding-top:-10px;">
+    <ion-item style="margin-bottom:80px;">
+      <ion-icon name="md-person" item-start>
+      </ion-icon>
+      <ion-searchbar [(ngModel)]="myInput" placeholder="Client Name" showCancelButton color="danger" (ionInput)="filterItems($event)"></ion-searchbar>
+    </ion-item>
+  </div>
+  <div style="height: 90%; margin-top:70px;">
+    <ion-list style=" margin-bottom:70px;">
+      <ion-item-sliding *ngFor="let client of modifiedData" (click)="openClient(client.Cliente)">
+        <ion-item>
+          <h2>{{client.nome}}</h2>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="primary" (click)="startCart($event,client.Cliente)">
+            <ion-icon name="cart"></ion-icon>
+            Cart
+          </button>
+          <button *ngIf="client.Fac_Tel" ion-button color="secondary" (click)="callClient($event,client.Fac_Tel)">
+            <ion-icon name="call"></ion-icon>
+            Call
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
 
 
   <ion-fab bottom right style="padding-bottom: 6em; padding-right: 1.8em">
