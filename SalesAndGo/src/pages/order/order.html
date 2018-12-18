@@ -1,11 +1,12 @@
 <ion-header>
-  <ion-navbar color="dark">
+  <ion-navbar style="display:inline-flex;">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Sales&Go</ion-title>
+    <ion-title (click)="goToHomePage()">Sales&Go</ion-title>
   </ion-navbar>
 </ion-header>
+
 
 
 <ion-content class="list-avatar-page">
@@ -65,10 +66,10 @@
           <strong>Artigo</strong>
         </ion-col>
         <ion-col col-2>
-          <strong>Quant.</strong>
+          <strong>Qty</strong>
         </ion-col>
         <ion-col col-2>
-          <strong>Preco Unit.</strong>
+          <strong>Unit Price</strong>
         </ion-col>
         <ion-col col-2>
           <strong>Preco Liquido</strong>
@@ -94,3 +95,5 @@
   </ion-list>
 
 </ion-content>
+
+<nav-tabs ></nav-tabs>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PrimaveraProvider } from '../../providers/primavera/primavera';
+import { HomePage } from '../home/home';
 
 
 @IonicPage()
@@ -48,6 +49,9 @@ export class OrderPage {
     console.log('ionViewDidLoad OrderPage');
   }
 
-
+  goToHomePage()
+  {
+    this.navCtrl.setRoot(HomePage);
+  }
 
 }

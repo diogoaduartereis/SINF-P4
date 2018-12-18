@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { OrderPage } from '../order/order';
+import { CataloguePage } from '../catalogue/catalogue';
+import { HomePage } from '../home/home';
+
 import { PrimaveraProvider } from '../../providers/primavera/primavera';
 
 /**
@@ -126,4 +129,12 @@ export class OrdersPage {
     this.navCtrl.push(OrderPage, { docid: doc_id });
   }
 
+  redirectCatalogue(){
+    this.navCtrl.push(CataloguePage);
+  }
+  
+  goToHomePage()
+  {
+    this.navCtrl.setRoot(HomePage);
+  }
 }
