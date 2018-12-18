@@ -28,6 +28,7 @@ export class CataloguePage {
   }
 
   searchQuery: string = '';
+  hasProducts: boolean = false;
   items: string[] = [];
   sortValue: string = 'PVP1';
   sortType: string = 'Price'
@@ -37,6 +38,7 @@ export class CataloguePage {
   familiesArray: string[] = [];
   originalProducts: string[] = [];
   checkoutProducts: string[] = [];
+  modifiedData: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
               public primavera: PrimaveraProvider, private toastCtrl: ToastController) 
@@ -44,7 +46,7 @@ export class CataloguePage {
 
     const access_token = primavera.genAccessToken();
 
-    let query = `SELECT A.Artigo, A.CDU_CampoVar1, A.Descricao, A.Observacoes, A.familia,
+    let query = `SELECT A.Artigo, A.CDU_CampoVar1, A.CDU_CampoVar2, A.CDU_CampoVar3, A.Descricao, A.Observacoes, A.familia,
                   AM.PVP1, VAM.StkActual, AM.Moeda 
                   from Artigo A INNER JOIN ArtigoMoeda AM 
                   ON A.Artigo = AM.Artigo join V_INV_ArtigoArmazem VAM 
@@ -55,12 +57,8 @@ export class CataloguePage {
     if(typeof response != 'undefined')
     {
       this.products = response;
-      //TEMPORARY
-      if(this.products[0]){
-        this.products[0]['StkActual']=2;
-      }
-      //end TEMPORARY
-      this.uniq_fast(this.products);
+      this.modifiedData = this.products;
+      this.uniq_fast(this.modifiedData);
     }  
   }
 
@@ -68,19 +66,17 @@ export class CataloguePage {
   beforeSearchProducts = [];
   getItems(ev: any) {
     
-    if(this.beforeSearchProducts.length == 0)
-      this.beforeSearchProducts = this.products;
+    
     // set val to the value of the searchbar
-    const val = ev.target.value;
+    let val = ev.target.value;
+    this.modifiedData = this.products;
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.products = this.products.filter((item) => {
-        return (item['Descricao'].toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
+      this.modifiedData = this.modifiedData.filter(function(doc){
+        return doc['Descricao'].toLowerCase().includes(val.toLowerCase());
+      });
     }
-    else
-      this.products = this.beforeSearchProducts;
   }
 
   ionViewDidLoad() {
@@ -109,7 +105,7 @@ export class CataloguePage {
     let alert = this.alertCtrl.create();
     alert.setTitle('Select products to see');
     
-    if(typeof this.products !== 'undefined')
+    if(typeof this.modifiedData !== 'undefined')
     {
       let familias = this.families;
       for(let i = 0; i < familias.length; i++)
@@ -129,7 +125,7 @@ export class CataloguePage {
       handler: data => {
 
         if(this.originalProducts.length == 0)
-          this.originalProducts = this.products;
+          this.originalProducts = this.modifiedData;
         
         for(let i = 0; i < data.length; i++)
         {
@@ -144,11 +140,11 @@ export class CataloguePage {
         }
         if(this.newProducts.length > 0)
         {
-          this.products = this.newProducts; 
+          this.modifiedData = this.newProducts; 
           this.newProducts = [];
         }
         else
-          this.products = this.originalProducts;
+          this.modifiedData = this.originalProducts;
       }
     });
     alert.present();
@@ -193,13 +189,13 @@ export class CataloguePage {
     if(document.getElementById('arrowUp') != null)
     {
       this.ASCDESC = 'Descending'
-      this.sortProducts(this.products, this.ASCDESC); 
+      this.sortProducts(this.modifiedData, this.ASCDESC); 
     }
     
     if(document.getElementById('arrowDown') != null)
     {
       this.ASCDESC = 'Ascending'
-      this.sortProducts(this.products, this.ASCDESC); 
+      this.sortProducts(this.modifiedData, this.ASCDESC); 
     }
   }
 
@@ -282,7 +278,7 @@ export class CataloguePage {
           this.sortType = 'Stock';
         else
           this.sortType = 'Name';
-        this.sortProducts(this.products, this.ASCDESC);
+        this.sortProducts(this.modifiedData, this.ASCDESC);
       }
     });
     alert.present();
@@ -309,6 +305,7 @@ export class CataloguePage {
           position: 'top'
         });
         toast.present();
+        this.hasProducts=true;
         return;
       }
       elem['quantidade']=1;
@@ -322,6 +319,7 @@ export class CataloguePage {
         duration: 1500,
         position: 'top'
       });
+      this.hasProducts=true;
       toast.present();
     }
     else

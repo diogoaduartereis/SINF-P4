@@ -1,11 +1,12 @@
 <ion-header>
-  <ion-navbar color="dark">
+  <ion-navbar style="display:inline-flex;">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Sales&Go</ion-title>
+    <ion-title (click)="goToHomePage()">Sales&Go</ion-title>
   </ion-navbar>
 </ion-header>
+
 
 
 <ion-content class="list-avatar-page">
@@ -19,9 +20,12 @@
 
     <ion-item>
       <strong>Status:</strong>
-
       <span id="status">
-        <span>{{document.Estado === 'P'? 'Waiting':''}}</span>
+        
+        <span>{{(document.Estado === 'P' && document.TipoDoc==='ECL')? 'Waiting':''}}</span>
+        <span>{{(document.Estado === 'P' && document.TipoDoc==='ORC')? 'Approved':''}}</span>
+
+        <span>{{document.Estado === 'G'? 'Waiting':''}}</span>
         <span>{{document.Estado === 'T'? 'Completed':''}}</span>
         <span>{{document.Estado === 'R'? 'Nullified':''}}</span>
       </span>
@@ -65,10 +69,10 @@
           <strong>Artigo</strong>
         </ion-col>
         <ion-col col-2>
-          <strong>Quant.</strong>
+          <strong>Qty</strong>
         </ion-col>
         <ion-col col-2>
-          <strong>Preco Unit.</strong>
+          <strong>Unit Price</strong>
         </ion-col>
         <ion-col col-2>
           <strong>Preco Liquido</strong>
@@ -93,4 +97,8 @@
     </ion-item>
   </ion-list>
 
+  <span style="padding:6em"></span>
+  
 </ion-content>
+
+<nav-tabs ></nav-tabs>

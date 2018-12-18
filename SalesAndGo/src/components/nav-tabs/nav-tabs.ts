@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { ListClientsPage } from '../../pages/list-clients/list-clients';
 import { CalendarPage } from '../../pages/calendar/calendar';
 import { CataloguePage } from '../../pages/catalogue/catalogue';
-import { CheckoutPage } from '../../pages/checkout/checkout';
+import { OrdersPage } from '../../pages/orders/orders';
 import { HomePage } from '../../pages/home/home';
 /**
  * Generated class for the NavTabsComponent component.
@@ -39,8 +39,8 @@ export class NavTabsComponent {
     this.navCtrl.push(ListClientsPage);
   }
 
-  openCheckout() {
-    this.navCtrl.push(CheckoutPage);
+  openOrders() {
+    this.navCtrl.push(OrdersPage);
   }
 
 

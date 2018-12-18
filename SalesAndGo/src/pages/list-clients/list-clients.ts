@@ -25,15 +25,16 @@ export class ListClientsPage {
 
   clients: object[] = [];
 
+  modifiedData: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private callNumber: CallNumber,
               private primavera: PrimaveraProvider) {
 
     const access_token = primavera.genAccessToken();
-
     const query = `SELECT C.Cliente, C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda 
     FROM Clientes C`;
 
     this.clients = primavera.postRequest(access_token, '/Administrador/Consulta', 200, query);
+    this.modifiedData = this.clients;
   }
 
   callClient(event,num_tel){
@@ -49,6 +50,19 @@ export class ListClientsPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  filterItems(ev: any) {
+
+    let val = ev.target.value;
+
+    this.modifiedData = this.clients;
+
+    if (val && val.trim() !== '') {
+      this.modifiedData = this.modifiedData.filter(function (doc) {
+        return doc.nome.toLowerCase().includes(val.toLowerCase());
+      });
+    }
   }
 
   openClient(client_id) {

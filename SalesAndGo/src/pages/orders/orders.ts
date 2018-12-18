@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { OrderPage } from '../order/order';
+import { CataloguePage } from '../catalogue/catalogue';
+import { HomePage } from '../home/home';
+import { Storage } from '@ionic/storage';
+
 import { PrimaveraProvider } from '../../providers/primavera/primavera';
 
 /**
@@ -24,25 +28,33 @@ export class OrdersPage {
   type:any;
   access_token: string;
   docs: {};
-
+  vendedor: string = "";
   originalData: any;
   modifiedData: any;
   savedData: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public primavera: PrimaveraProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public primavera: PrimaveraProvider, private storage: Storage) {
 
     const access_token = primavera.genAccessToken();
+   
+    this.storage.get('Vendedor').then((val) => {
+      this.vendedor = val;
+      console.log(this.vendedor);
+      
+      const query = `SELECT CD.Responsavel, CD.Data, CD.TipoDoc, CD.Documento, CD.NumDoc, CD.TotalDocumento, CD.Nome,
+        CDS.Estado FROM CabecDoc CD INNER JOIN CabecDocStatus CDS ON CDS.IdCabecDoc = CD.Id WHERE (CD.TipoDoc='ECL' OR CD.TipoDoc='ORC') AND CD.Responsavel ='`+ this.vendedor + `' ORDER BY CD.Data`;
 
-    const query = `SELECT CD.Data, CD.TipoDoc, CD.Documento, CD.NumDoc, CD.TotalDocumento, CD.Nome,
-        CDS.Estado FROM CabecDoc CD INNER JOIN CabecDocStatus CDS ON CDS.IdCabecDoc = CD.Id WHERE CD.TipoDoc='ECL' OR CD.TipoDoc='ORC'`;
+      this.docs = primavera.postRequest(access_token, '/Administrador/Consulta', 200, query);
 
-    this.docs = primavera.postRequest(access_token, '/Administrador/Consulta', 200, query);
+      console.log(this.docs);
 
-    console.log(this.docs);
+      this.originalData = this.docs;
+      this.modifiedData = JSON.parse(JSON.stringify(this.originalData));
+      this.savedData = JSON.parse(JSON.stringify(this.originalData));
+ 
+    });
 
-    this.originalData = this.docs;
-    this.modifiedData = JSON.parse(JSON.stringify(this.originalData));
-    this.savedData = JSON.parse(JSON.stringify(this.originalData));
+    
   }
 
   resetData() {
@@ -97,7 +109,7 @@ export class OrdersPage {
   orderData() {
 
     if (document.getElementById('sort').classList.contains('down')) {
-      this.modifiedData.sort(function (a, b) { return Date.parse(a.Data) - Date.parse(b.Data) });
+      this.modifiedData.sort(function (a, b) { return Date.parse(b.Data) - Date.parse(a.Data) });
       document.getElementById('sort').classList.remove('down');
       document.getElementById('sort').classList.add('up');
 
@@ -105,7 +117,7 @@ export class OrdersPage {
       document.getElementById('up').style.display = 'block';
 
     } else {
-      this.modifiedData.sort(function (a, b) { return Date.parse(b.Data) - Date.parse(a.Data) });
+      this.modifiedData.sort(function (a, b) { return Date.parse(a.Data) - Date.parse(b.Data) });
 
       document.getElementById('sort').classList.remove('up');
       document.getElementById('sort').classList.add('down');
@@ -126,4 +138,12 @@ export class OrdersPage {
     this.navCtrl.push(OrderPage, { docid: doc_id });
   }
 
+  redirectCatalogue(){
+    this.navCtrl.push(CataloguePage);
+  }
+  
+  goToHomePage()
+  {
+    this.navCtrl.setRoot(HomePage);
+  }
 }
