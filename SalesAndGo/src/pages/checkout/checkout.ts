@@ -91,14 +91,13 @@ export class CheckoutPage {
       Linhas: linhas,
       Tipodoc: docType,
       Serie: "A",
-      Entidade: this.selectedClient,
+      Entidade: this.selectedClient.Cliente,
       TipoEntidade: "C"
     }
 
-    let response = this.primaveraAccess.postRequest(this.access_token, '/Vendas/Docs/CreateDocument/', 203, document);
+    let response = this.primaveraAccess.postRequest(this.access_token, '/Vendas/Docs/CreateDocument/', 200, document);
     if (typeof response != 'undefined') {
-      console.log(response)
-      //  this.navCtrl.push(CataloguePage,{});
+        this.navCtrl.push(CataloguePage,{});
     }
   }
 }
