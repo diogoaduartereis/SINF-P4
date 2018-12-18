@@ -9,7 +9,7 @@
 
 <!-- searchable or just dropdown? 
      guardar este id do cliente selecionado p usar mais a frente -->
-<ion-content padding>
+<ion-content>
   <!-- items - should include previously selected quantity; 
              buttons to increase or decrease quantity take into account stock available; 
              updated information is passed to final function 
@@ -23,15 +23,24 @@
       <img src="http://94.60.211.16:8080/images/{{product.CDU_CampoVar1}}" style="width:30%; height:30%; display:block; margin-left: auto; margin-right:auto;">
       <br>
       <h2 style="text-align:center;">{{ product.Descricao }}</h2>
-      
+      <div padding style="display:flex; align-items: center">
+        <button ion-button round icon-only color="light" small (click)="decrementProduct(product)">
+          <ion-icon name="remove"></ion-icon>
+        </button>
+        <h3 style="text-align:center;"> {{product.quantidade}} </h3> 
+        <button ion-button round icon-only color="light" small [disabled]="!product.isPlusEnabled" (click)="incrementProduct(product)">
+          <ion-icon name="add"></ion-icon>
+        </button>
+        <h3 style="text-align:center;">  Remaining Stock: {{product.StkActual}}</h3>
+      </div>
     </ion-item>
   </ion-list>
 
   <ion-list>
     <ion-item>
       <ion-label>Select client</ion-label>
-      <ion-select [(ngModel)]="client">
-        <ion-option *ngFor="let client of clients" [value]="client">{{client.Cliente}}</ion-option>
+      <ion-select [(ngModel)]="selectedClient" (ngModelChange)="onSelectClient()">
+        <ion-option *ngFor="let client of clients" [value]="client">{{client.Nome}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
@@ -44,34 +53,36 @@
       <ion-item>
         <ion-icon name='home' item-start></ion-icon>
         <h3>Shipping Address</h3>
-        <p>Rua A</p>
+        <p>{{selectedClient.Fac_Mor}}</p>
       </ion-item>
       <ion-item>
         <ion-icon name='cash' item-start></ion-icon>
         <h3>Total</h3>
-        <p>€6.23</p>
+        <p>{{moeda}} {{total}}</p>
       </ion-item>
     </ion-list>
   </ion-card>
 
-  <ion-grid>
+  <ion-grid style="margin-bottom:10px">
     <ion-row flex-wrap: nowrap align-items-center justify-content-center>
       <ion-col>
         <!-- create budget/create document for budget ORC -->
-        <button ion-button round small icon-start (click)="insertDocumento($event, 'ORC')" style="margin-bottom: 1em; margin-left: 0.65em;">
+        <button ion-button round small icon-start [disabled]="!isEnabled" (click)="insertDocumento(products, 'ORC')" style="margin-bottom: 1em; margin-left: 0.65em;">
           <ion-icon name="paper"></ion-icon>
           Get Budget
         </button>
       </ion-col>
       <ion-col>
         <!-- confirm order/create document for order ECL -->
-        <button ion-button round small icon-start (click)="insertDocumento($event, 'ECL')" style="margin-bottom: 1em; margin-left: 0.65em;">
+        <button ion-button round small icon-start [disabled]="!isEnabled" (click)="insertDocumento(products, 'ECL')" style="margin-bottom: 1em; margin-left: 0.65em;">
           <ion-icon name="cart"></ion-icon>
           Confirm Order
         </button>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <nav-tabs></nav-tabs>
 </ion-content>
 
-<nav-tabs></nav-tabs>
+
+

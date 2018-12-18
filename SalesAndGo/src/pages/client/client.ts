@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
 import { PrimaveraProvider } from '../../providers/primavera/primavera';
+import { CataloguePage } from '../catalogue/catalogue';
+import { EditClientPage } from '../edit-client/edit-client';
 
 
 /**
@@ -24,16 +26,18 @@ export class ClientPage {
   total_faturacao: number;
   total_orcamento: number;
   access_token: string;
+  clientInfo: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private callNumber: CallNumber,
               public primavera: PrimaveraProvider) {
+    this.clientInfo = "information";
     let Cliente = navParams.get('cid');
 
     const access_token = primavera.genAccessToken();
 
     console.log(access_token);
 
-    let query = `SELECT C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda, C.Notas
+    let query = `SELECT C.Cliente, C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda, C.Notas
                    FROM Clientes C
                    WHERE C.Cliente = '` + Cliente + `'`;
     
@@ -44,10 +48,24 @@ export class ClientPage {
              JOIN DocumentosVenda DV ON DV.Documento = CD.TipoDoc WHERE
              DV.TipoDocumento = 4 AND C.Cliente = '` + Cliente + `' GROUP BY CD.Entidade`;
     
-    this.total_faturacao = primavera.postRequest(access_token,'/Administrador/Consulta', 200, query)[0].TotalFaturacao;
+    this.total_faturacao = 0;
+    let result = primavera.postRequest(access_token,'/Administrador/Consulta', 200, query)[0];
+    if(result){
+      this.total_faturacao = result.TotalFaturacao;
+    }
   }
 
   callClient(num_tel){
     this.callNumber.callNumber(num_tel, true).then(res => console.log('Launched dialer!', res)).catch(err => console.log('Error launching dialer', err));
+  }
+  
+  goToCatalogue(event, client)		
+  {		
+    this.navCtrl.push(CataloguePage, {client:client});		
+  }
+
+  goToEditPage(event, client)
+  {
+    this.navCtrl.push(EditClientPage, {client:client});		
   }
 }

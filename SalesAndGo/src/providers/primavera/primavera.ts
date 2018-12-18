@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 export class PrimaveraProvider {
 
   webApi : string = 'http://94.60.211.16:2018/WebApi';
-  resp: object[] = [];
+  resp: any[] = [];
 
 
   constructor(public http: HttpClient) {
@@ -60,7 +60,7 @@ export class PrimaveraProvider {
     return response;
   }
 
-  postRequest(access_token, url, expectedResponse = 200, data){
+  postRequest(access_token, url, expectedResponse = 200, data) : any[]{
     if (url[0] != '/'){
       url = '/' + url;
     }
@@ -75,6 +75,7 @@ export class PrimaveraProvider {
     Http.onreadystatechange=function(){
       if(this.readyState==4 && this.status==expectedResponse){
         response = JSON.parse(Http.responseText).DataSet.Table;
+        console.log(response);
       }else{
         console.log(Http.responseText);
       }
@@ -82,11 +83,11 @@ export class PrimaveraProvider {
 
     Http.send(JSON.stringify(data));
 
-    return response;
+    return response as object[];
   }
  
 
-  getRequest(access_token, url, expectedResponse = 200){
+  getRequest(access_token, url, expectedResponse = 200) : object[]{
     if (url[0] != '/'){
       url = '/' + url;
     }
@@ -108,6 +109,6 @@ export class PrimaveraProvider {
 
     Http.send();
 
-    return response;
+    return response as object[];
   }
 }

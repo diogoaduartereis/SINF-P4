@@ -55,6 +55,11 @@ export class CataloguePage {
     if(typeof response != 'undefined')
     {
       this.products = response;
+      //TEMPORARY
+      if(this.products[0]){
+        this.products[0]['StkActual']=2;
+      }
+      //end TEMPORARY
       this.uniq_fast(this.products);
     }  
   }
@@ -286,11 +291,31 @@ export class CataloguePage {
   //Add to cart
   orderLength = 0;
   addProductToCart(elem)
-  {
+  { 
     if(elem.StkActual > 0)
     {
+      elem['isPlusEnabled']=true;
+      let index = this.checkoutProducts.indexOf(elem)
+      if( index > -1)
+      {
+        this.checkoutProducts[index]['quantidade']++;
+        elem.StkActual--;
+        if(elem.StkActual===0)
+          elem['isPlusEnabled']=false;
+        this.orderLength++;
+        let toast = this.toastCtrl.create({
+          message: 'Product added to order',
+          duration: 1500,
+          position: 'top'
+        });
+        toast.present();
+        return;
+      }
+      elem['quantidade']=1;
       this.checkoutProducts.push(elem);
       elem.StkActual--;
+      if(elem.StkActual===0)
+        elem['isPlusEnabled']=false;
       this.orderLength++;
       let toast = this.toastCtrl.create({
         message: 'Product added to order',
