@@ -15,7 +15,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
+  <ion-list style=" margin-bottom:70px;">
     <ion-item-sliding *ngFor="let client of clients" (click)="openClient(client.Cliente)">
       <ion-item>
         <h2>{{client.nome}}</h2>

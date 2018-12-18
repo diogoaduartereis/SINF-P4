@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Md5} from 'ts-md5/dist/md5';
 import { ToastController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { ListClientsPage } from '../list-clients/list-clients';
 
 /**
  * Generated class for the AddClientPage page.
@@ -74,7 +75,7 @@ export class AddClientPage {
 
       alert.addButton({
         text: 'Dismiss',
-        handler: data=>{this.navCtrl.pop();}
+        handler: data=>{this.navCtrl.setRoot(ListClientsPage);}
       })
       alert.present();
     }
