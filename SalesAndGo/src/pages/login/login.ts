@@ -32,6 +32,18 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
+  onFocus() {
+    let div = document.getElementById('div_logo');
+
+    div.style.height = "10%"; 
+  }
+
+  onBlur() {
+    let div = document.getElementById('div_logo');
+
+    div.style.height = "40%"; 
+  }
+
   login() {
     console.log(this.email);
 

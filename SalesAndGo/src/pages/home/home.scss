@@ -5,17 +5,12 @@ page-home {
     ion-scroll {margin-top: 1em}
 
     .button {
-    //background: red; 
-    //color: white;
-    //padding: 3px;
-    //border-radius: 20px;
-    border: 0.15em solid white;
+        border: 0.15em solid white;
  }
 
     /* dashboard buttons */
     .contact-btn {
         background: rgb(35, 144, 245);
-        //margin-left: 3em;
         text-align: end;
         width: 3.25em;
         height: 3.25em;
@@ -23,14 +18,12 @@ page-home {
 
     .calendar-btn {
         background: rgb(2, 192, 103);
-        //margin-right: 3em;
         width: 3.25em;
         height: 3.25em;
     }
 
     .catalogue-btn {
         background: rgb(240, 133, 12);
-        //margin-left: 3em;
         text-align: end;
         width: 3.25em;
         height: 3.25em;
@@ -38,7 +31,6 @@ page-home {
 
     .cart-btn {
         background: rgb(153, 0, 255);
-        //margin-right: 3em;
         width: 3.25em;
         height: 3.25em;
     }
@@ -50,29 +42,21 @@ page-home {
 
     /* dashboard icons description */
     .clients h6 {
-        //margin-top: 0.5em;
-        //margin-left: 3em;
         text-align: center;
         color: rgb(2, 69, 131);
     }
     
     .calendar h6 {
-        //margin-top: 0.5em;
-        //margin-right: 3em;
         text-align: center;
         color: rgb(31, 121, 79);
     }
 
     .catalogue h6 {
-        //margin-top: 0.5em;
-        //margin-left: 4em;
         text-align: center;
         color: rgb(151, 84, 7);
     }
     
     .orders h6 {
-        //margin-top: 0.5em;
-        //margin-right: 4em;
         text-align: center;
         color: rgb(70, 13, 109);
     }
