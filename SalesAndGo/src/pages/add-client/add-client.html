@@ -53,19 +53,30 @@
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-select placeholder="CondPag" [(formControl)]="addClientForm.controls['CondPag']" name="CondPag">
+        <ion-select placeholder="PayCond" [(formControl)]="addClientForm.controls['CondPag']" name="CondPag">
           <ion-label>Payment condition</ion-label>
+          <ion-option value="1">Cash Basis</ion-option>
+          <ion-option value="2">30 Day Invoice</ion-option>
+          <ion-option value="3">45 Day Invoice</ion-option>
+          <ion-option value="4">60 Day Invoice</ion-option>
+          <ion-option value="5">End of Month</ion-option>
+          <ion-option value="6">Next 30th Day</ion-option>
+          <ion-option value="7">Next month, 31th Day</ion-option>
+          <ion-option value="8">Installment Payment</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-select placeholder="ModoPag" [(formControl)]="addClientForm.controls['ModoPag']" name="ModoPag">
+        <ion-select placeholder="PayMode" [(formControl)]="addClientForm.controls['ModoPag']" name="ModoPag">
           <ion-label>Payment Mode</ion-label>
+          <ion-option value="MB">MB</ion-option>
+          <ion-option value="PGNUM">PGNUM</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-select placeholder="ModoRec" [(formControl)]="addClientForm.controls['ModoRec']" name="ModoRec">
+        <ion-select placeholder="RecMode" [(formControl)]="addClientForm.controls['ModoRec']" name="ModoRec">
           <ion-label>Receiving Mode</ion-label>
-          
+          <ion-option value="MB">MB</ion-option>
+          <ion-option value="NUM">NUM</ion-option>
         </ion-select>
       </ion-item>
       <br>

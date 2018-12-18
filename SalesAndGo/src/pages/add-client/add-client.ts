@@ -34,7 +34,7 @@ export class AddClientPage {
       Telefone: ['', Validators.required],
       NumContribuinte: ['', Validators.required],
       Moeda: ['', Validators.required],
-      Condpag: ['', Validators.required],
+      CondPag: ['', Validators.required],
       ModoPag: ['', Validators.required],
       ModoRec: ['', Validators.required]
     });

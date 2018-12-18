@@ -58,11 +58,6 @@ export class CataloguePage {
     {
       this.products = response;
       this.modifiedData = this.products;
-      //TEMPORARY
-      if(this.modifiedData[0]){
-        this.modifiedData[0]['StkActual']=2;
-      }
-      //end TEMPORARY
       this.uniq_fast(this.modifiedData);
     }  
   }
