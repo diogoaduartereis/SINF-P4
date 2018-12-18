@@ -20,15 +20,10 @@
 
 
 <ion-content padding>
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="myInput" (ionInput)="getItems($event)"></ion-searchbar>
     <div *ngIf="searching" class="spinner-container">
       <ion-spinner></ion-spinner>
     </div>
-    <ion-list>
-      <ion-item *ngFor="let item of items">
-        {{ item }}
-      </ion-item>
-    </ion-list>
       
     <button ion-button icon-start block outline (click)="showCheckbox()"> Filter by Family </button>
     <br>
@@ -42,7 +37,7 @@
     <br>
     <hr>
     <ion-list id = "productsListID">
-      <ion-item *ngFor="let product of products">
+      <ion-item *ngFor="let product of modifiedData">
         <img src = "http://94.60.211.16:8080/images/{{product.CDU_CampoVar1}}" 
              style="width:40%; height:40%; display:block; margin-left: auto; margin-right:auto;"
              (click)="goToProductPage($event, product)">

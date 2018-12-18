@@ -38,6 +38,7 @@ export class CataloguePage {
   familiesArray: string[] = [];
   originalProducts: string[] = [];
   checkoutProducts: string[] = [];
+  modifiedData: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
               public primavera: PrimaveraProvider, private toastCtrl: ToastController) 
@@ -56,6 +57,7 @@ export class CataloguePage {
     if(typeof response != 'undefined')
     {
       this.products = response;
+      this.modifiedData = this.products;
       //TEMPORARY
       if(this.products[0]){
         this.products[0]['StkActual']=2;
@@ -69,19 +71,17 @@ export class CataloguePage {
   beforeSearchProducts = [];
   getItems(ev: any) {
     
-    if(this.beforeSearchProducts.length == 0)
-      this.beforeSearchProducts = this.products;
+    
     // set val to the value of the searchbar
-    const val = ev.target.value;
+    let val = ev.target.value;
+    this.modifiedData = this.products;
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.products = this.products.filter((item) => {
-        return (item['Descricao'].toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
+      this.modifiedData = this.modifiedData.filter(function(doc){
+        return doc['Descricao'].toLowerCase().includes(val.toLowerCase());
+      });
     }
-    else
-      this.products = this.beforeSearchProducts;
   }
 
   ionViewDidLoad() {
