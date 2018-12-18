@@ -20,9 +20,12 @@
 
     <ion-item>
       <strong>Status:</strong>
-
       <span id="status">
-        <span>{{document.Estado === 'P'? 'Waiting':''}}</span>
+        
+        <span>{{(document.Estado === 'P' && document.TipoDoc==='ECL')? 'Waiting':''}}</span>
+        <span>{{(document.Estado === 'P' && document.TipoDoc==='ORC')? 'Approved':''}}</span>
+
+        <span>{{document.Estado === 'G'? 'Waiting':''}}</span>
         <span>{{document.Estado === 'T'? 'Completed':''}}</span>
         <span>{{document.Estado === 'R'? 'Nullified':''}}</span>
       </span>
@@ -94,6 +97,8 @@
     </ion-item>
   </ion-list>
 
+  <span style="padding:6em"></span>
+  
 </ion-content>
 
 <nav-tabs ></nav-tabs>
