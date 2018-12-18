@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-navbar color="dark">
+  <ion-navbar style="display:inline-flex;">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Sales&Go</ion-title>
+    <ion-title (click)="goToHomePage()">Sales&Go</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -116,13 +116,14 @@
     </ion-item>
   </ion-card>
 
+  <span style="padding:6em"></span>
 
-</ion-content>
-
-<ion-footer>
-  <ion-toolbar style="padding:15px;">
-    <button style="background:#94b3e7" ion-button color="secondary" block>
-      New Order
+  <ion-fab bottom right style="padding-bottom:6em; padding-right: 1.8em">
+    <button (click)="redirectCatalogue()" ion-fab>
+      <ion-icon name="add"></ion-icon>
     </button>
-  </ion-toolbar>
-</ion-footer>
+  </ion-fab>
+
+</ion-content >
+
+<nav-tabs ></nav-tabs>

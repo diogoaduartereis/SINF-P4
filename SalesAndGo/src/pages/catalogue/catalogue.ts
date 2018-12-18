@@ -28,6 +28,7 @@ export class CataloguePage {
   }
 
   searchQuery: string = '';
+  hasProducts: boolean = false;
   items: string[] = [];
   sortValue: string = 'PVP1';
   sortType: string = 'Price'
@@ -37,6 +38,7 @@ export class CataloguePage {
   familiesArray: string[] = [];
   originalProducts: string[] = [];
   checkoutProducts: string[] = [];
+  modifiedData: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
               public primavera: PrimaveraProvider, private toastCtrl: ToastController) 
@@ -55,6 +57,7 @@ export class CataloguePage {
     if(typeof response != 'undefined')
     {
       this.products = response;
+      this.modifiedData = this.products;
       //TEMPORARY
       if(this.products[0]){
         this.products[0]['StkActual']=2;
@@ -68,19 +71,17 @@ export class CataloguePage {
   beforeSearchProducts = [];
   getItems(ev: any) {
     
-    if(this.beforeSearchProducts.length == 0)
-      this.beforeSearchProducts = this.products;
+    
     // set val to the value of the searchbar
-    const val = ev.target.value;
+    let val = ev.target.value;
+    this.modifiedData = this.products;
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.products = this.products.filter((item) => {
-        return (item['Descricao'].toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
+      this.modifiedData = this.modifiedData.filter(function(doc){
+        return doc['Descricao'].toLowerCase().includes(val.toLowerCase());
+      });
     }
-    else
-      this.products = this.beforeSearchProducts;
   }
 
   ionViewDidLoad() {
@@ -309,6 +310,7 @@ export class CataloguePage {
           position: 'top'
         });
         toast.present();
+        this.hasProducts=true;
         return;
       }
       elem['quantidade']=1;
@@ -322,6 +324,7 @@ export class CataloguePage {
         duration: 1500,
         position: 'top'
       });
+      this.hasProducts=true;
       toast.present();
     }
     else
