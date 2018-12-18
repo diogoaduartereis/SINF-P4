@@ -16,6 +16,7 @@ import { OrdersPage } from '../pages/orders/orders';
 import { OrderPage } from '../pages/order/order';
 import { ProductPage} from '../pages/product/product';
 import { AddClientPage } from '../pages/add-client/add-client';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CallNumber } from '@ionic-native/call-number';
@@ -44,6 +45,7 @@ import {Md5} from 'ts-md5/dist/md5';
     CalendarModule,
     HttpClientModule,
     ComponentsModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

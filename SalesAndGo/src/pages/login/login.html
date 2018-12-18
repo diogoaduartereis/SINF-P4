@@ -1,8 +1,13 @@
 <ion-header>
-  <ion-toolbar color="primary" style="height: 8.5em; font-weight: bold; font-size: 2em; text-align: center;">Sales&Go</ion-toolbar>
+  <ion-toolbar style="text-align: center; font-size: 2em">
+    <!--<img src="../../assets/imgs/salesAndGoLogo.png" display:inline-block />-->
+  </ion-toolbar>
+
+
+
 </ion-header>
 
-<ion-content padding>
+<ion-content padding style="margin-top: 11em">
 
   <h2>Welcome back!</h2>
   <h3>
@@ -12,27 +17,17 @@
 
   <ion-grid>
     <ion-col>
-      <ion-list>
 
-        <ion-row>
-          <ion-item class="fields">
-            <ion-label color="primary" floating>Email</ion-label>
-            <ion-input type="email"></ion-input>
-          </ion-item>
-        </ion-row>
-
-        <ion-row>
-          <ion-item class="fields">
-            <ion-label color="primary" floating>Password</ion-label>
-            <ion-input type="password"></ion-input>
-          </ion-item>
-        </ion-row>
-
-      </ion-list>
+      <ion-row>
+        <ion-item class="fields">
+          <ion-label color="primary" floating>Email</ion-label>
+          <ion-input [(ngModel)]="email" type="email"></ion-input>
+        </ion-item>
+      </ion-row>
 
       <ion-row>
         <div class="login">
-          <button ion-button round>LOGIN</button>
+          <button ion-button round (click)="login()">LOGIN</button>
         </div>
       </ion-row>
 
