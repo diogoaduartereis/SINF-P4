@@ -34,12 +34,24 @@ export class EditClientPage {
     let Telefone = this.client['Fac_Tel'];
     let NumContribuinte = this.client['NumContrib'];
     let Moeda = this.client['Moeda'];
+    let ModoPag = '';
+    let ModoRec = '';
+    let CondPag = '';
+    if(this.client['ModoPag'] != null)
+      ModoPag = this.client['ModoPag'];
+    if(this.client['ModoRec'] != null)
+      ModoRec = this.client['ModoRec'];
+    if(this.client['CondPag'] != null)
+      CondPag = this.client['CondPag'];
     this.editClientForm = this.formBuilder.group({
       Nome: [nome, Validators.required],
       Morada: [Morada, Validators.required],
       Telefone: [Telefone, Validators.required],
       NumContribuinte: [NumContribuinte, Validators.required],
-      Moeda: [Moeda, Validators.required]
+      Moeda: [Moeda, Validators.required],
+      ModoPag: [ModoPag, Validators.required],
+      ModoRec: [ModoRec, Validators.required],
+      CondPag: [CondPag, Validators.required]
     });
   }
 
@@ -60,6 +72,9 @@ export class EditClientPage {
     let Telefone = this.editClientForm.value['Telefone'];
     let NumContribuinte = this.editClientForm.value['NumContribuinte'];
     let Moeda = this.editClientForm.value['Moeda'];
+    let ModoPag = this.editClientForm.value['ModoPag'];
+    let ModoRec = this.editClientForm.value['ModoRec'];
+    let CondPag = this.editClientForm.value['CondPag'];
 
     const body = {
       "CodigoTabLog": "Cliente",
@@ -71,6 +86,9 @@ export class EditClientPage {
       "Telefone": Telefone,
       "NumContribuinte": NumContribuinte,
       "Moeda": Moeda,
+      "CondPag": CondPag,
+      "ModoPag": ModoPag,
+      "ModoRec": ModoRec,
       "EmModoEdicao": true
       };
       

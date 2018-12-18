@@ -58,7 +58,7 @@ export class AddClientPage {
     let Telefone = this.addClientForm.value['Telefone'];
     let NumContribuinte = this.addClientForm.value['NumContribuinte'];
     let Moeda = this.addClientForm.value['Moeda'];
-    let Condpag = this.addClientForm.value['Condpag'];
+    let CondPag = this.addClientForm.value['CondPag'];
     let ModoPag = this.addClientForm.value['ModoPag'];
     let ModoRec = this.addClientForm.value['ModoRec'];
     var d = new Date();
@@ -72,7 +72,7 @@ export class AddClientPage {
       "Telefone": Telefone,
       "NumContribuinte": NumContribuinte,
       "Moeda": Moeda,
-      "CondPag": Condpag,
+      "CondPag": CondPag,
       "ModoPag": ModoPag,
       "ModoRec": ModoRec,
       };
