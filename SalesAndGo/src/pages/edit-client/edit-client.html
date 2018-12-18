@@ -1,0 +1,59 @@
+<!--
+  Generated template for the EditClientPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title (click)="goToHomePage()">Sales&Go</ion-title>
+  </ion-navbar>
+  
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="editClientForm" (ngSubmit)="editClient()">
+    <ion-item>
+        <ion-input type="text" placeholder="Name" [(formControl)]="editClientForm.controls['Nome']" name="Nome"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Address" [(formControl)]="editClientForm.controls['Morada']" name="Morada"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" placeholder="Cellphone Number" [(formControl)]="editClientForm.controls['Telefone']" name="Telefone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" placeholder="Taxpayer Number" [(formControl)]="editClientForm.controls['NumContribuinte']" name="NumContribuinte"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select placeholder="Currency" [(formControl)]="editClientForm.controls['Moeda']" name="Moeda">
+          <ion-label>Currency</ion-label>
+          <ion-option value="EUR">EUR</ion-option>
+          <ion-option value="AED">AED</ion-option>
+          <ion-option value="AKZ">AKZ</ion-option>
+          <ion-option value="CVE">CVE</ion-option>
+          <ion-option value="DKK">DKK</ion-option>
+          <ion-option value="GBP">GBP</ion-option>
+          <ion-option value="JPY">JPY</ion-option>
+          <ion-option value="KES">KES</ion-option>
+          <ion-option value="MOP">MOP</ion-option>
+          <ion-option value="MT">MT</ion-option>
+          <ion-option value="NOK">NOK</ion-option>
+          <ion-option value="QAR">QAR</ion-option>
+          <ion-option value="R$">R$</ion-option>
+          <ion-option value="SAR">SAR</ion-option>
+          <ion-option value="SEK">SEK</ion-option>
+          <ion-option value="STD">STD</ion-option>
+          <ion-option value="USD">USD</ion-option>
+          <ion-option value="ZAR">ZAR</ion-option>
+        </ion-select>
+      </ion-item>
+      <br>
+     <button ion-button type="submit" block [disabled]="!editClientForm.valid">Edit Client Information</button>
+  </form>
+</ion-content>
