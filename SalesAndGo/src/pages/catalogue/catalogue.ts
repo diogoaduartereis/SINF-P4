@@ -28,6 +28,7 @@ export class CataloguePage {
   }
 
   searchQuery: string = '';
+  hasProducts: boolean = false;
   items: string[] = [];
   sortValue: string = 'PVP1';
   sortType: string = 'Price'
@@ -309,6 +310,7 @@ export class CataloguePage {
           position: 'top'
         });
         toast.present();
+        this.hasProducts=true;
         return;
       }
       elem['quantidade']=1;
@@ -322,6 +324,7 @@ export class CataloguePage {
         duration: 1500,
         position: 'top'
       });
+      this.hasProducts=true;
       toast.present();
     }
     else

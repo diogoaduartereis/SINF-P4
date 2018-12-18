@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { CataloguePage } from '../catalogue/catalogue';
 import { CalendarPage } from '../calendar/calendar';
 import { ListClientsPage } from '../list-clients/list-clients';
-import { CheckoutPage } from '../checkout/checkout';
+import { OrdersPage } from '../../pages/orders/orders';
 
 
 @Component({
@@ -28,8 +28,8 @@ export class HomePage {
     this.navCtrl.push(ListClientsPage);
   }
 
-  openCheckout() {
-    this.navCtrl.push(CheckoutPage);
+  openOrders() {
+    this.navCtrl.push(OrdersPage);
   }
   
 }

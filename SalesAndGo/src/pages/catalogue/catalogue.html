@@ -11,7 +11,7 @@
         <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title (click)="goToHomePage()" style="display:inline-block; margin-top:12px;">Sales&Go</ion-title>
-    <button ion-button icon-only (click)="goToCheckout($event, checkoutProducts)" style="float:right; margin-top:8px;" clear>
+    <button ion-button [disabled]="!hasProducts" icon-only (click)="goToCheckout($event, checkoutProducts)" style="float:right; margin-top:8px;" clear>
       <ion-icon name = "card"><h4 *ngIf="orderLength > 0" style="display:inline;">{{orderLength}}</h4></ion-icon>
     </button>
   </ion-navbar>
