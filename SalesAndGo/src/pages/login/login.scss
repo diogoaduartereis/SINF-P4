@@ -1,5 +1,9 @@
 page-login {
 
+    #div_logo {
+        transition: height 0.2s;
+    }
+
     h2 {
         font-weight: bold; 
         font-size: 2em; 
@@ -13,6 +17,11 @@ page-login {
         color: rgba(128, 128, 128, 0.849);
         padding-top: 0.3em;
         padding-left: 2.5em;
+        margin-bottom: 0;
+    }
+
+    p {
+        margin-bottom: 0;
     }
 
     .login {
@@ -28,14 +37,16 @@ page-login {
     }
 
    .fields {
-       max-width: 70% ;
+       max-width: 70%;
        margin-left: 3em;
        padding: 0em;  
    }
 
    .input-cover {position: static;}
 
- 
+   .input-wrapper {
+
+   }
      
   
 
