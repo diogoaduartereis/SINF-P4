@@ -53,9 +53,8 @@
           <ion-searchbar [(ngModel)]="myInput" placeholder="Client Name" showCancelButton color="danger" (ionInput)="filterItems($event)"></ion-searchbar>
         </ion-item>
       </ion-list>
-      <button style="margin-top:20px" class="gray" ion-button color="light" (click)="filterData()" block>
-        Filter results
-      </button>
+
+      <button style="margin-top:20px"  (click)="filterData()" ion-button icon-start block outline>Filter results</button>
     </ion-card-content>
 
   </ion-card> 
