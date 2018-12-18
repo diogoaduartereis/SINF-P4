@@ -53,19 +53,18 @@
           <ion-searchbar [(ngModel)]="myInput" placeholder="Client Name" showCancelButton color="danger" (ionInput)="filterItems($event)"></ion-searchbar>
         </ion-item>
       </ion-list>
-      <button style="margin-top:20px" class="gray" ion-button color="light" (click)="filterData()" block>
-        Filter results
-      </button>
+
+      <button style="margin-top:20px"  (click)="filterData()" ion-button icon-start block outline>Filter results</button>
     </ion-card-content>
 
   </ion-card> 
   <div text-right>
     <button id="sort" class="down" (click)="orderData()" ion-button color="dark" clear>
       <div id="down">
-        <ion-icon name="md-arrow-dropdown-circle"></ion-icon>
+        <ion-icon name="arrow-round-down"></ion-icon>
       </div>
       <div style="display:none" id="up">
-        <ion-icon name="md-arrow-dropup-circle"></ion-icon>
+        <ion-icon name="arrow-round-up"></ion-icon>
       </div>
     </button>
   </div>
@@ -74,7 +73,10 @@
     <ion-item>
 
       <ion-icon *ngIf="doc.Estado === 'R'" style="color:rgb(223, 151, 130)" name="ios-close-circle" item-start large></ion-icon>
-      <ion-icon *ngIf="doc.Estado === 'P'" style="color:#94b3e7; display:inline" name="ios-time" item-start large></ion-icon>
+      <ion-icon *ngIf="doc.Estado === 'P' && doc.TipoDoc==='ECL'" style="color:#94b3e7; display:inline" name="ios-time" item-start large></ion-icon>
+      <ion-icon *ngIf="doc.Estado === 'G'" style="color:#94b3e7; display:inline" name="ios-time" item-start large></ion-icon>
+      
+      <ion-icon *ngIf="doc.Estado === 'P' && doc.TipoDoc==='ORC'" style="color:#B6D7A8; display:inline" name="ios-time" item-start large></ion-icon>
       <ion-icon *ngIf="doc.Estado === 'T'" style="color:#B6D7A8" name="ios-checkmark-circle" item-start large></ion-icon>
 
       <ion-card style=" margin:0;width: calc(100% );border-style: solid;border-width: 1px;border-color: rgb(231, 231, 231);">
