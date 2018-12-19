@@ -102,10 +102,10 @@
 
     <ion-list *ngSwitchCase="'notes'">
       <ion-item>
-        <ion-textarea style="max-height: 100%; width: 100%; height: 100%;" placeholder="Enter notes">{{client.Notas}}</ion-textarea>
+        <ion-textarea id="clientNotes" style="max-height: 100%; width: 100%; height: 100%;" placeholder="Enter notes">{{client.Notas}}</ion-textarea>
       </ion-item>
       <ion-item>
-        <button ion-button>Save</button>
+        <button (click)="saveNotes($event, client)" ion-button>Save</button>
       </ion-item>
     </ion-list>
   </div>

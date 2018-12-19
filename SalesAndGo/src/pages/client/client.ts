@@ -5,6 +5,7 @@ import { CallNumber } from '@ionic-native/call-number';
 import { PrimaveraProvider } from '../../providers/primavera/primavera';
 import { CataloguePage } from '../catalogue/catalogue';
 import { EditClientPage } from '../edit-client/edit-client';
+import { ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the ClientPage page.
@@ -28,7 +29,7 @@ export class ClientPage {
   clientInfo: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private callNumber: CallNumber,
-              public primavera: PrimaveraProvider) {
+              public primavera: PrimaveraProvider, private toastCtrl: ToastController) {
     this.clientInfo = "information";
     let Cliente = navParams.get('cid');
 
@@ -36,8 +37,8 @@ export class ClientPage {
 
     console.log(access_token);
 
-    let query = `SELECT C.Cliente, C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda, C.Notas,
-                  C.nome, C.ModoPag, C.ModoRec, C.CondPag
+    let query = `SELECT C.Cliente, C.Vendedor, C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda, C.Notas,
+                   C.ModoPag, C.ModoRec, C.CondPag
                    FROM Clientes C
                    WHERE C.Cliente = '` + Cliente + `'`;
     
@@ -67,5 +68,60 @@ export class ClientPage {
   goToEditPage(event, client)
   {
     this.navCtrl.push(EditClientPage, {client:client});		
+  }
+
+  saveNotes(event, client)
+  {
+    const access_token = this.primavera.genAccessToken();
+    let nome = client['nome'];
+    let Morada = client['Fac_Mor'];
+    let Telefone = client['Fac_Tel'];
+    let NumContribuinte = client['NumContrib'];
+    let Moeda = client['Moeda'];
+    let ModoPag = client['ModoPag'];
+    let ModoRec = client['ModoRec'];
+    let CondPag = client['CondPag'];
+    let vendedor = client['Vendedor'];
+    let id = client['Cliente'];
+    let Notes = document.getElementById('clientNotes').innerText;
+
+    const body = {
+      "CodigoTabLog": "Cliente",
+      "ChaveLog": "Cliente",
+      "EstadoBE": "",
+      "Vendedor": vendedor,
+      "Cliente": id,
+      "Nome": nome,
+      "Morada": Morada,
+      "Telefone": Telefone,
+      "NumContribuinte": NumContribuinte,
+      "Moeda": Moeda,
+      "CondPag": CondPag,
+      "ModoPag": ModoPag,
+      "ModoRec": ModoRec,
+      "EmModoEdicao": true,
+      "Notes": Notes,
+      };
+      
+    if(this.primavera.createClient(access_token, body) == 1)
+    {
+      let alert = this.alertCtrl.create();
+      alert.setTitle('Note Added');
+
+      alert.addButton({
+        text: 'Dismiss',
+        handler: data=>{}
+      })
+      alert.present();
+    }
+    else
+    {
+      let toast = this.toastCtrl.create({
+        message: 'Note failed to be added',
+        duration: 1500,
+        position: 'top'
+      });
+      toast.present();
+    }
   }
 }
