@@ -18,6 +18,7 @@ import { ProductPage} from '../pages/product/product';
 import { AddClientPage } from '../pages/add-client/add-client';
 import { IonicStorageModule } from '@ionic/storage';
 import { EditClientPage } from '../pages/edit-client/edit-client';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CallNumber } from '@ionic-native/call-number';
@@ -70,7 +71,8 @@ import {Md5} from 'ts-md5/dist/md5';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CallNumber,
     PrimaveraProvider,
-    Md5
+    Md5,
+    LaunchNavigator
   ]
 })
 export class AppModule {}
