@@ -14,7 +14,7 @@
 
     <ion-row>
       <ion-col>
-        <button ion-button large round icon-only class="contact-btn" (click)="openClients()">
+        <button ion-button large round icon-only class="contact-btn home_button" (click)="openClients()">
           <ion-icon name="contact"></ion-icon>
         </button>
         <div class="clients">
@@ -22,7 +22,7 @@
         </div>
       </ion-col>
       <ion-col>
-        <button ion-button large round icon-only class="calendar-btn" (click)="openCalendar()">
+        <button ion-button large round icon-only class="calendar-btn home_button" (click)="openCalendar()">
           <ion-icon name="calendar"></ion-icon>
         </button>
         <div class="calendar">
@@ -33,7 +33,7 @@
 
     <ion-row>
       <ion-col>
-        <button ion-button large round icon-only class="catalogue-btn" (click)="openCatalogue()">
+        <button ion-button large round icon-only class="catalogue-btn home_button" (click)="openCatalogue()">
           <ion-icon name="list-box"></ion-icon>
         </button>
         <div class="catalogue">
@@ -41,7 +41,7 @@
         </div>
       </ion-col>
       <ion-col>
-        <button ion-button large round icon-only class="cart-btn" (click)="openOrders()">
+        <button ion-button large round icon-only class="cart-btn home_button" (click)="openOrders()">
           <ion-icon name="cart"></ion-icon>
         </button>
         <div class="orders">
@@ -52,94 +52,41 @@
 
   </ion-grid>
 
-  <h2 text-center>Next appointments</h2>
-  <ion-scroll scrollY="true" style="height: 40%">
+  <ion-scroll scrollY="true" style="height: 47%">
 
-    <ion-grid text-center>
-
-      <!-- first card -->
-      <ion-card style="height: 10em">
-        <ion-row>
-          <ion-col style="width: 66%">
-            <ion-item>
-              <ion-icon name="time" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
-              <h2 style="font-weight: bold; color: rgb(0, 204, 126);">20 min</h2>
-              <p>Avenida dos Aliados, Porto</p>
-            </ion-item>
-            <ion-item>
-              <ion-icon name="contact" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
-              <h2>Meet David Reis</h2>
-              <p>Praça da Liberdade 126, 4000-322 Porto</p>
-            </ion-item>
-          </ion-col>
-
-          <ion-col style="width: 34%">
-            <ion-fab right top>
-              <button ion-fab class="pin-btn">
-                <ion-icon name="pin"></ion-icon>
-              </button>
-            </ion-fab>
-            <img style="margin-top: 0.4em" src="https://img.freepik.com/free-vector/road-map-with-pointers-in-flat-style_23-2147789378.jpg?size=338c&ext=jpg">
-          </ion-col>
-        </ion-row>
-      </ion-card>
-
-      <!-- second card -->
-      <ion-card style="height: 10em">
-        <ion-row>
-          <ion-col style="width: 66%">
-            <ion-item>
-              <ion-icon name="time" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
-              <h2 style="font-weight: bold; color: rgb(0, 204, 126);">20 min</h2>
-              <p>Avenida dos Aliados, Porto</p>
-            </ion-item>
-            <ion-item>
-              <ion-icon name="contact" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
-              <h2>Meet David Reis</h2>
-              <p>Praça da Liberdade 126, 4000-322 Porto</p>
-            </ion-item>
-          </ion-col>
-
-          <ion-col style="width: 34%">
-            <ion-fab right top>
-              <button ion-fab class="pin-btn">
-                <ion-icon name="pin"></ion-icon>
-              </button>
-            </ion-fab>
-            <img style="margin-top: 0.4em" src="https://img.freepik.com/free-vector/road-map-with-pointers-in-flat-style_23-2147789378.jpg?size=338c&ext=jpg">
-          </ion-col>
-        </ion-row>
-      </ion-card>
-
-      <!-- third card -->
-      <ion-card style="height: 10em">
-        <ion-row>
-          <ion-col style="width: 66%">
-            <ion-item>
-              <ion-icon name="time" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
-              <h2 style="font-weight: bold; color: rgb(0, 204, 126);">20 min</h2>
-              <p>Avenida dos Aliados, Porto</p>
-            </ion-item>
-            <ion-item>
-              <ion-icon name="contact" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
-              <h2>Meet David Reis</h2>
-              <p>Praça da Liberdade 126, 4000-322 Porto</p>
-            </ion-item>
-          </ion-col>
-
-          <ion-col style="width: 34%">
-            <ion-fab right top>
-              <button ion-fab class="pin-btn">
-                <ion-icon name="pin"></ion-icon>
-              </button>
-            </ion-fab>
-            <img style="margin-top: 0.4em" src="https://img.freepik.com/free-vector/road-map-with-pointers-in-flat-style_23-2147789378.jpg?size=338c&ext=jpg">
-          </ion-col>
-        </ion-row>
-      </ion-card>
-
-    </ion-grid>
-  </ion-scroll>
+      <ion-grid text-center>
+  
+        <div *ngIf="!dispEvents.length">Porra nao ha eventos</div>
+  
+        <ion-card style="height: 10em" *ngFor="let event of dispEvents">
+          <ion-grid style="height: 100%">
+            <ion-row style="height: 100%" align-items-center>
+              <ion-col col-2>
+                <ion-icon large style="font-size: 30px;" name="time"></ion-icon>
+              </ion-col>
+              <ion-col>
+                <h2 style="text-align: left;font-weight: bold; color: rgb(0, 204, 126);">{{event.title}}</h2>
+                <h2 style="text-align: left;color: #666;">{{event.start}}</h2>
+              </ion-col>
+            </ion-row>
+            <ion-row style="height: 100%" align-items-center>
+              <ion-col col-2>
+                <ion-icon large style="font-size: 30px;" name="contact"></ion-icon>
+              </ion-col>
+              <ion-col>
+                <h2 style="text-align: left">Meet {{event.client}}</h2>
+                <p style="text-align: left;color: #666;">{{event.location}}</p>
+              </ion-col>
+              <ion-col col-4>
+                <button ion-button (click)="openMap($event.location);">
+                  Open Map
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-grid>
+    </ion-scroll>
 
   <!--<button ion-button secondary menuToggle>Toggle Menu</button>-->
 </ion-content>

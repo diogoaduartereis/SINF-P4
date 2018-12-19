@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PrimaveraProvider } from '../../providers/primavera/primavera';
+import { ViewChild } from '@angular/core'
+import { Calendar } from 'ionic3-calendar-en/src/calendar/calendar';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 /**
  * Generated class for the CalendarPage page.
@@ -19,8 +22,11 @@ export class CalendarPage {
 
   currentEvents:any[] = [];
   dispEvents:any[] = [];
+  dateSelected:boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public primavera: PrimaveraProvider) {
+  @ViewChild('calendar') calendar: Calendar;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public primavera: PrimaveraProvider, private launchNavigator: LaunchNavigator) {
     const access_token = primavera.genAccessToken();
 
     let query = "SELECT * FROM Tarefas;"
@@ -28,7 +34,7 @@ export class CalendarPage {
     let events = primavera.postRequest(access_token,'/Administrador/Consulta',200,query);
 
     for (event of events){
-      let curEvent = {year:1970,month:1,date:1,start:"1970/1/1, 00:00",end:"1970/1/1, 00:00",client:"",location:""};
+      let curEvent = {year:1970,month:1,date:1,start:"1970/1/1, 00:00",end:"1970/1/1, 00:00",location:"",title:""};
 
       let startDate : Date = new Date(Date.parse(event['DataInicio']));
       let endDate : Date = new Date(Date.parse(event['DataFim']));
@@ -38,26 +44,42 @@ export class CalendarPage {
       curEvent.start = startDate.toLocaleString();
       curEvent.end = endDate.toLocaleString();
 
-      curEvent.client = event['EntidadePrincipal'];
+      query = `SELECT Nome FROM Clientes WHERE Cliente = '` + event['EntidadePrincipal'] + `';`;
+      
+      curEvent['client'] = primavera.postRequest(access_token,'/Administrador/Consulta', 200, query)[0].Nome;
+
       curEvent.location = event['LocalRealizacao'];
+      curEvent.title = event['Resumo'];
 
       this.currentEvents.push(curEvent);
     }
 
-    console.log(this.currentEvents);
-
     this.dispEvents = this.currentEvents;
   }
 
-  onDaySelect(date){ 
-    console.log(this.currentEvents);
+  openMap(location) {
+    this.launchNavigator.navigate(location).then(
+      success => console.log('Launched navigator'), 
+      error => console.log('Error launching navigator', error)
+    );
+  }
 
+  onDaySelect(date){ 
     let events = this.currentEvents.filter((event) => {
       return event.year == date.year && event.month == date.month && event.date == date.date;
     });
 
-    console.log(events);
+    this.dateSelected = true;
+
     this.dispEvents = events;
+  }
+
+  onClearDay(){
+    this.calendar.dateArray[this.calendar.lastSelect].isSelect = false;
+    
+    this.dateSelected = false;
+
+    this.dispEvents = this.currentEvents;
   }
 
   ionViewDidLoad() {
