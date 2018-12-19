@@ -55,6 +55,7 @@ export class ClientPage {
     if(result){
       this.total_faturacao = result.TotalFaturacao;
     }
+    this.myNotes = this.client['notas'];
   }
 
   callClient(num_tel){
@@ -100,9 +101,10 @@ export class ClientPage {
       "CondPag": CondPag,
       "ModoPag": ModoPag,
       "ModoRec": ModoRec,
-      "notas": Notes,
+      "Observacoes": String(Notes),
       "EmModoEdicao": true,
       };
+      
       
     if(this.primavera.createClient(access_token, body) == 1)
     {
