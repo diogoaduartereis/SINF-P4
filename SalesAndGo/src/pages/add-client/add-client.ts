@@ -36,6 +36,7 @@ export class AddClientPage {
       Telefone: ['', Validators.required],
       NumContribuinte: ['', Validators.required],
       Moeda: ['', Validators.required],
+      Pais: ['', Validators.required],
       CondPag: ['', Validators.required],
       ModoPag: ['', Validators.required],
       ModoRec: ['', Validators.required]
@@ -67,6 +68,7 @@ export class AddClientPage {
     let CondPag = this.addClientForm.value['CondPag'];
     let ModoPag = this.addClientForm.value['ModoPag'];
     let ModoRec = this.addClientForm.value['ModoRec'];
+    let pais = this.addClientForm.value['Pais'];
     var d = new Date();
     var n = d.getTime();
     let id = n.toString().substr(0, 12);
@@ -82,6 +84,7 @@ export class AddClientPage {
       "CondPag": CondPag,
       "ModoPag": ModoPag,
       "ModoRec": ModoRec,
+      "pais": pais
       };
 
     if(this.primavera.createClient(access_token, body) == 1)

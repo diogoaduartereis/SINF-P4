@@ -90,6 +90,7 @@ export class ClientPage {
     let CondPag = client['CondPag'];
     let vendedor = client['Vendedor'];
     let id = client['Cliente'];
+    let pais = client['pais'];
     let Notes = this.myNotes;
 
     const body = {
@@ -107,6 +108,7 @@ export class ClientPage {
       "ModoPag": ModoPag,
       "ModoRec": ModoRec,
       "Observacoes": String(Notes),
+      "pais": pais,
       "EmModoEdicao": true,
       };
       

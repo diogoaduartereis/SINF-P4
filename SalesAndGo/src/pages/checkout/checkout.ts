@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PrimaveraProvider } from '../../providers/primavera/primavera';
 import { CataloguePage } from '../catalogue/catalogue';
 import { Storage } from '@ionic/storage';
+import { ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the ClientPage page.
@@ -31,7 +32,7 @@ export class CheckoutPage {
   access_token: any;
   vendedor: string = "";
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-    public http: HttpClient, public primavera: PrimaveraProvider, private storage: Storage) {
+    public http: HttpClient, public primavera: PrimaveraProvider, private storage: Storage, private toastCtrl: ToastController) {
     this.products = navParams.get('products');
     if (this.products)
       for (var i = 0; i < this.products.length; i++) {
@@ -96,11 +97,26 @@ export class CheckoutPage {
     }
 
     let response = this.primaveraAccess.postRequest(this.access_token, '/Vendas/Docs/CreateDocument/', 200, document);
-    if (typeof response != 'undefined') {
-        this.navCtrl.push(CataloguePage,{});
-    }
+    if (response.length == 0) {
+      let alert = this.alertCtrl.create();
+      alert.setTitle('Orded Completed');
 
-    this.navCtrl.pop();
+      alert.addButton({
+        text: 'Dismiss',
+        handler: data=>{this.navCtrl.pop();}
+      })
+      alert.present();
+        
+    }
+    else
+    {
+      let toast = this.toastCtrl.create({
+        message: 'Failed to perform the action',
+        duration: 1500,
+        position: 'top'
+      });
+      toast.present();
+    }
   }
 
   insertOportunidade(products) {
