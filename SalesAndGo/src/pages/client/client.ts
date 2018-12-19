@@ -27,6 +27,7 @@ export class ClientPage {
   total_orcamento: number;
   access_token: string;
   clientInfo: string;
+  myNotes: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private callNumber: CallNumber,
               public primavera: PrimaveraProvider, private toastCtrl: ToastController) {
@@ -37,7 +38,7 @@ export class ClientPage {
 
     console.log(access_token);
 
-    let query = `SELECT C.Cliente, C.Vendedor, C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda, C.Notas,
+    let query = `SELECT C.Cliente, C.Vendedor, C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda, C.notas,
                    C.ModoPag, C.ModoRec, C.CondPag
                    FROM Clientes C
                    WHERE C.Cliente = '` + Cliente + `'`;
@@ -83,7 +84,7 @@ export class ClientPage {
     let CondPag = client['CondPag'];
     let vendedor = client['Vendedor'];
     let id = client['Cliente'];
-    let Notes = document.getElementById('clientNotes').innerText;
+    let Notes = this.myNotes;
 
     const body = {
       "CodigoTabLog": "Cliente",
@@ -99,8 +100,8 @@ export class ClientPage {
       "CondPag": CondPag,
       "ModoPag": ModoPag,
       "ModoRec": ModoRec,
+      "notas": Notes,
       "EmModoEdicao": true,
-      "Notes": Notes,
       };
       
     if(this.primavera.createClient(access_token, body) == 1)
@@ -110,7 +111,7 @@ export class ClientPage {
 
       alert.addButton({
         text: 'Dismiss',
-        handler: data=>{}
+        handler: data=>{this.navCtrl.setRoot(ClientPage, {"cid":this.navParams.get('cid')})}
       })
       alert.present();
     }
