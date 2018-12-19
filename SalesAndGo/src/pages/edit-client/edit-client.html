@@ -49,6 +49,25 @@
         </ion-select>
       </ion-item>
       <ion-item>
+        <ion-select placeholder="Country" [(formControl)]="editClientForm.controls['Pais']" name="Pais">
+          <ion-label>Country</ion-label>
+          <ion-option value="PT">PT</ion-option>
+          <ion-option value="DE">DE</ion-option>
+          <ion-option value="ES">ES</ion-option>
+          <ion-option value="FI">FI</ion-option>
+          <ion-option value="SE">SE</ion-option>
+          <ion-option value="US">US</ion-option>
+          <ion-option value="AO">AO</ion-option>
+          <ion-option value="AT">AT</ion-option>
+          <ion-option value="BE">BE</ion-option>
+          <ion-option value="BR">BR</ion-option>
+          <ion-option value="FR">FR</ion-option>
+          <ion-option value="GB">GB</ion-option>
+          <ion-option value="IE">IE</ion-option>
+          <ion-option value="LU">LU</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
           <ion-select placeholder="PayCond" [(formControl)]="editClientForm.controls['CondPag']" name="CondPag">
             <ion-label>Payment condition</ion-label>
             <ion-option value="1">Cash Basis</ion-option>

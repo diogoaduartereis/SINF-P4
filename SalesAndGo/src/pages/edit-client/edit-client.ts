@@ -36,6 +36,7 @@ export class EditClientPage {
     let Telefone = this.client['Fac_Tel'];
     let NumContribuinte = this.client['NumContrib'];
     let Moeda = this.client['Moeda'];
+    let Pais = this.client['pais'];
     let ModoPag = '';
     let ModoRec = '';
     let CondPag = '';
@@ -51,6 +52,7 @@ export class EditClientPage {
       Telefone: [Telefone, Validators.required],
       NumContribuinte: [NumContribuinte, Validators.required],
       Moeda: [Moeda, Validators.required],
+      Pais: [Pais, Validators.required],
       ModoPag: [ModoPag, Validators.required],
       ModoRec: [ModoRec, Validators.required],
       CondPag: [CondPag, Validators.required]
@@ -81,6 +83,7 @@ export class EditClientPage {
     let ModoPag = this.editClientForm.value['ModoPag'];
     let ModoRec = this.editClientForm.value['ModoRec'];
     let CondPag = this.editClientForm.value['CondPag'];
+    let Pais = this.editClientForm.value['Pais'];
 
     const body = {
       "Vendedor": this.vendedor,
@@ -96,6 +99,7 @@ export class EditClientPage {
       "CondPag": CondPag,
       "ModoPag": ModoPag,
       "ModoRec": ModoRec,
+      "pais": Pais,
       "EmModoEdicao": true
       };
       
