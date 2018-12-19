@@ -118,4 +118,52 @@ export class CheckoutPage {
       toast.present();
     }
   }
+
+  insertOportunidade(products) {
+    let vendedor = "";
+    let oportunidadeKey = "OPORT_" + Date.now();
+    this.storage.get("Vendedor").then((val) => {
+      vendedor = val;
+    });
+    let obj = {
+      "Oportunidade": oportunidadeKey,
+      "Descricao": "Oportunidade de Venda",
+      "DataCriacao": "11/27/2018",
+      "DataExpiracao": "11/27/2040",
+      "Resumo": "Oportunidade de Venda",
+      "Entidade": this.selectedClient.Cliente,
+      "TipoEntidade": "C",
+      "EstadoVenda": "0",
+      "Moeda": "EUR",
+      "Vendedor": vendedor,
+      "CicloVenda": "C0001",
+      "Zona": "01"
+    };
+
+    console.log(obj);
+
+    this.primaveraAccess.postRequest(this.access_token, '/CRM/OportunidadesVenda/Actualiza/""', 204, obj);
+
+
+    let query = "SELECT ID FROM CabecOportunidadesVenda WHERE Oportunidade = '" + oportunidadeKey + "';";
+    let oportunidadeID = this.primaveraAccess.postRequest(this.access_token, "/Administrador/Consulta", 200, query)[0].ID;
+
+    let newobj = {
+      "Linhas": [
+          {
+            "IdOportunidade": oportunidadeID,
+            "NumProposta": "1",
+              "Artigo": products[0].Artigo,
+              "Quantidade": products[0].Quantidade
+          }
+      ],
+      
+      "IdOportunidade": oportunidadeID,
+      "NumProposta": "1"
+    };
+
+    this.primaveraAccess.postRequest(this.access_token, '/CRM/PropostasOPV/Actualiza/', 204, newobj);
+
+    this.navCtrl.push(CataloguePage);
+  }
 }
