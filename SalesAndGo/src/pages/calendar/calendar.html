@@ -10,16 +10,18 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Calendar</ion-title>
+    <button *ngIf="dateSelected" ion-button style="position: absolute; right: 1em; top: 0.4em;" (click)="onClearDay()">
+        <p>See All Events</p>
+    </button>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-
   <div padding>
-    <ion-calendar [events]="currentEvents" (onDaySelect)="onDaySelect($event)" #calendar></ion-calendar>
+    <ion-calendar #calendar [events]="currentEvents" (onDaySelect)="onDaySelect($event)" #calendar></ion-calendar>
   </div>
 
-  <ion-scroll scrollY="true" style="height: 50%">
+  <ion-scroll scrollY="true" style="height: 47%">
 
     <ion-grid text-center>
 
@@ -30,29 +32,31 @@
       </div>
 
       <ion-card style="height: 10em" *ngFor="let event of dispEvents">
-        <ion-row>
-          <ion-col style="width: 66%">
-            <ion-item>
-              <ion-icon name="time" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
-              <h2 style="font-weight: bold; color: rgb(0, 204, 126);">{{event.start}}</h2>
-              <p>{{event.end}}</p>
-            </ion-item>
-            <ion-item>
-              <ion-icon name="contact" item-start large style="margin-right: -0.2em; margin-left: -0.1em"></ion-icon>
-              <h2>Meet {{event.client}}</h2>
-              <p>{{event.location}}</p>
-            </ion-item>
-          </ion-col>
-
-          <ion-col style="width: 34%">
-            <ion-fab right top>
-              <button ion-fab class="pin-btn">
-                <ion-icon name="pin"></ion-icon>
+        <ion-grid style="height: 100%">
+          <ion-row style="height: 100%" align-items-center>
+            <ion-col col-2>
+              <ion-icon large style="font-size: 30px;" name="time"></ion-icon>
+            </ion-col>
+            <ion-col>
+              <h2 style="text-align: left;font-weight: bold; color: rgb(0, 204, 126);">{{event.title}}</h2>
+              <h2 style="text-align: left;color: #666;">{{event.start}}</h2>
+            </ion-col>
+          </ion-row>
+          <ion-row style="height: 100%" align-items-center>
+            <ion-col col-2>
+              <ion-icon large style="font-size: 30px;" name="contact"></ion-icon>
+            </ion-col>
+            <ion-col>
+              <h2 style="text-align: left">Meet {{event.client}}</h2>
+              <p style="text-align: left;color: #666;">{{event.location}}</p>
+            </ion-col>
+            <ion-col col-4>
+              <button ion-button (click)="openMap($event.location);">
+                Open Map
               </button>
-            </ion-fab>
-            <img style="margin-top: 0.4em" src="https://img.freepik.com/free-vector/road-map-with-pointers-in-flat-style_23-2147789378.jpg?size=338c&ext=jpg">
-          </ion-col>
-        </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-card>
     </ion-grid>
   </ion-scroll>

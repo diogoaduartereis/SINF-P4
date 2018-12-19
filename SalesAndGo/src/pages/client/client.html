@@ -35,10 +35,6 @@
 
     <ion-card-content>
       <div text-center>
-        <button ion-button round icon-only round style="border-radius: 45%;">
-          <ion-icon name="mail"></ion-icon>
-        </button>
-
         <a button *ngIf="client.Fac_Tel" ion-button icon-only round style="border-radius: 45%;" href="sms://{{client.Fac_Tel}}">
           <ion-icon name="chatbubbles"></ion-icon>
         </a>
@@ -69,14 +65,6 @@
     <ion-list *ngSwitchCase="'information'">
       <ion-item>
         <ion-grid>
-          <ion-row align-items-center>
-            <ion-col col-1>
-              <ion-icon name="mail"></ion-icon>
-            </ion-col>
-            <ion-col>
-              example@gmail.com
-            </ion-col>
-          </ion-row>
           <ion-row align-items-center>
             <ion-col col-1>
               <ion-icon name="pin"></ion-icon>
