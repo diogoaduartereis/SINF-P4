@@ -46,7 +46,7 @@ export class CataloguePage {
 
     const access_token = primavera.genAccessToken();
 
-    let query = `SELECT A.Artigo, A.CDU_CampoVar1, A.Descricao, A.Observacoes, A.familia,
+    let query = `SELECT A.Artigo, A.CDU_CampoVar1, A.CDU_CampoVar2, A.CDU_CampoVar3, A.Descricao, A.Observacoes, A.familia,
                   AM.PVP1, VAM.StkActual, AM.Moeda 
                   from Artigo A INNER JOIN ArtigoMoeda AM 
                   ON A.Artigo = AM.Artigo join V_INV_ArtigoArmazem VAM 
@@ -58,12 +58,7 @@ export class CataloguePage {
     {
       this.products = response;
       this.modifiedData = this.products;
-      //TEMPORARY
-      if(this.products[0]){
-        this.products[0]['StkActual']=2;
-      }
-      //end TEMPORARY
-      this.uniq_fast(this.products);
+      this.uniq_fast(this.modifiedData);
     }  
   }
 
@@ -110,7 +105,7 @@ export class CataloguePage {
     let alert = this.alertCtrl.create();
     alert.setTitle('Select products to see');
     
-    if(typeof this.products !== 'undefined')
+    if(typeof this.modifiedData !== 'undefined')
     {
       let familias = this.families;
       for(let i = 0; i < familias.length; i++)
@@ -130,7 +125,7 @@ export class CataloguePage {
       handler: data => {
 
         if(this.originalProducts.length == 0)
-          this.originalProducts = this.products;
+          this.originalProducts = this.modifiedData;
         
         for(let i = 0; i < data.length; i++)
         {
@@ -145,11 +140,11 @@ export class CataloguePage {
         }
         if(this.newProducts.length > 0)
         {
-          this.products = this.newProducts; 
+          this.modifiedData = this.newProducts; 
           this.newProducts = [];
         }
         else
-          this.products = this.originalProducts;
+          this.modifiedData = this.originalProducts;
       }
     });
     alert.present();
@@ -194,13 +189,13 @@ export class CataloguePage {
     if(document.getElementById('arrowUp') != null)
     {
       this.ASCDESC = 'Descending'
-      this.sortProducts(this.products, this.ASCDESC); 
+      this.sortProducts(this.modifiedData, this.ASCDESC); 
     }
     
     if(document.getElementById('arrowDown') != null)
     {
       this.ASCDESC = 'Ascending'
-      this.sortProducts(this.products, this.ASCDESC); 
+      this.sortProducts(this.modifiedData, this.ASCDESC); 
     }
   }
 
@@ -283,7 +278,7 @@ export class CataloguePage {
           this.sortType = 'Stock';
         else
           this.sortType = 'Name';
-        this.sortProducts(this.products, this.ASCDESC);
+        this.sortProducts(this.modifiedData, this.ASCDESC);
       }
     });
     alert.present();

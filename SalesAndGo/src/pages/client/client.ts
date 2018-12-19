@@ -36,7 +36,8 @@ export class ClientPage {
 
     console.log(access_token);
 
-    let query = `SELECT C.Cliente, C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda, C.Notas
+    let query = `SELECT C.Cliente, C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda, C.Notas,
+                  C.nome, C.ModoPag, C.ModoRec, C.CondPag
                    FROM Clientes C
                    WHERE C.Cliente = '` + Cliente + `'`;
     

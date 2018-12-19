@@ -1,13 +1,14 @@
-<ion-header>
+<!--<ion-header>
   <ion-toolbar style="text-align: center; font-size: 2em">
-    <!--<img src="../../assets/imgs/salesAndGoLogo.png" display:inline-block />-->
+    <img src="../../assets/imgs/logo3.png" display:inline-block />
   </ion-toolbar>
+</ion-header>-->
 
+<ion-content padding>
 
-
-</ion-header>
-
-<ion-content padding style="margin-top: 11em">
+  <div style="text-align: center; height: 40%; margin-top: 2em" id="div_logo">
+    <img style="height: 100%" src="../../assets/imgs/logo3.png">
+  </div>
 
   <h2>Welcome back!</h2>
   <h3>
@@ -21,7 +22,7 @@
       <ion-row>
         <ion-item class="fields">
           <ion-label color="primary" floating>Email</ion-label>
-          <ion-input [(ngModel)]="email" type="email"></ion-input>
+          <ion-input [(ngModel)]="email" (ionFocus)="onFocus()" (ionBlur)="onBlur()" type="email"></ion-input>
         </ion-item>
       </ion-row>
 

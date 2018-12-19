@@ -33,7 +33,10 @@ export class AddClientPage {
       Morada: ['', Validators.required],
       Telefone: ['', Validators.required],
       NumContribuinte: ['', Validators.required],
-      Moeda: ['', Validators.required]
+      Moeda: ['', Validators.required],
+      CondPag: ['', Validators.required],
+      ModoPag: ['', Validators.required],
+      ModoRec: ['', Validators.required]
     });
     this.hash = this.Md5;
   }
@@ -55,6 +58,9 @@ export class AddClientPage {
     let Telefone = this.addClientForm.value['Telefone'];
     let NumContribuinte = this.addClientForm.value['NumContribuinte'];
     let Moeda = this.addClientForm.value['Moeda'];
+    let CondPag = this.addClientForm.value['CondPag'];
+    let ModoPag = this.addClientForm.value['ModoPag'];
+    let ModoRec = this.addClientForm.value['ModoRec'];
     var d = new Date();
     var n = d.getTime();
     let id = n.toString().substr(0, 12);
@@ -65,7 +71,10 @@ export class AddClientPage {
       "Morada": Morada,
       "Telefone": Telefone,
       "NumContribuinte": NumContribuinte,
-      "Moeda": Moeda
+      "Moeda": Moeda,
+      "CondPag": CondPag,
+      "ModoPag": ModoPag,
+      "ModoRec": ModoRec,
       };
 
     if(this.primavera.createClient(access_token, body) == 1)

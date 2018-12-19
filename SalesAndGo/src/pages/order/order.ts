@@ -26,7 +26,7 @@ export class OrderPage {
 
     const access_token = primavera.genAccessToken();
 
-    let query = `SELECT CD.Entidade, CD.ModoPag, CD.Documento, CD.CodPostalLocalidade, CD.Data, CD.Nome, CD.NumContribuinte,
+    let query = `SELECT CD.TipoDoc, CD.Entidade, CD.ModoPag, CD.Documento, CD.CodPostalLocalidade, CD.Data, CD.Nome, CD.NumContribuinte,
     CD.TotalDocumento, CDS.Estado FROM CabecDoc CD 
     INNER JOIN CabecDocStatus CDS ON CDS.IdCabecDoc = CD.Id WHERE CD.Documento =  '` + this.docID + `'`;
 
