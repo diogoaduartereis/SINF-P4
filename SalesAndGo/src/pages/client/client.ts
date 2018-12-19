@@ -6,6 +6,7 @@ import { PrimaveraProvider } from '../../providers/primavera/primavera';
 import { CataloguePage } from '../catalogue/catalogue';
 import { EditClientPage } from '../edit-client/edit-client';
 import { ToastController } from 'ionic-angular';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 /**
  * Generated class for the ClientPage page.
@@ -30,7 +31,7 @@ export class ClientPage {
   myNotes: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private callNumber: CallNumber,
-              public primavera: PrimaveraProvider, private toastCtrl: ToastController) {
+              public primavera: PrimaveraProvider, private toastCtrl: ToastController, private sanitizer: DomSanitizer) {
     this.clientInfo = "information";
     let Cliente = navParams.get('cid');
 
@@ -56,6 +57,10 @@ export class ClientPage {
       this.total_faturacao = result.TotalFaturacao;
     }
     this.myNotes = this.client['notas'];
+  }
+
+  getSMSUrl(num_tel): SafeUrl{
+    return this.sanitizer.bypassSecurityTrustUrl('sms://' + num_tel);
   }
 
   callClient(num_tel){

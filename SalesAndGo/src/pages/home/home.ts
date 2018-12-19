@@ -5,6 +5,7 @@ import { CalendarPage } from '../calendar/calendar';
 import { ListClientsPage } from '../list-clients/list-clients';
 import { OrdersPage } from '../../pages/orders/orders';
 import { PrimaveraProvider } from '../../providers/primavera/primavera'; 
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class HomePage {
 
   dispEvents:any[] = [];
 
-  constructor(public navCtrl: NavController, public primavera: PrimaveraProvider) {
+  constructor(public navCtrl: NavController, public primavera: PrimaveraProvider, private launchNavigator: LaunchNavigator) {
     const access_token = primavera.genAccessToken();
 
     let query = "SELECT * FROM Tarefas;"
@@ -43,6 +44,13 @@ export class HomePage {
 
       this.dispEvents.push(curEvent);
     }
+  }
+
+  openMap(location) {
+    this.launchNavigator.navigate(location).then(
+      success => console.log('Launched navigator'), 
+      error => console.log('Error launching navigator', error)
+    );
   }
 
   openCatalogue() {

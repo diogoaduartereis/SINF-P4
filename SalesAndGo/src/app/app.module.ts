@@ -19,6 +19,7 @@ import { AddClientPage } from '../pages/add-client/add-client';
 import { IonicStorageModule } from '@ionic/storage';
 import { EditClientPage } from '../pages/edit-client/edit-client';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
+import { SMS } from '@ionic-native/sms';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CallNumber } from '@ionic-native/call-number';
@@ -72,7 +73,8 @@ import {Md5} from 'ts-md5/dist/md5';
     CallNumber,
     PrimaveraProvider,
     Md5,
-    LaunchNavigator
+    LaunchNavigator,
+    SMS
   ]
 })
 export class AppModule {}

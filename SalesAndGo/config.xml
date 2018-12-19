@@ -87,4 +87,5 @@
         <variable name="OKHTTP_VERSION" value="3.+" />
     </plugin>
     <engine name="android" spec="7.1.4" />
+    <plugin name="cordova-sms-plugin" spec="1.0.0" />
 </widget>

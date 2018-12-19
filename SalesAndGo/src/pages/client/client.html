@@ -32,7 +32,7 @@
 
     <ion-card-content>
       <div text-center>
-        <a button *ngIf="client.Fac_Tel" ion-button icon-only round style="border-radius: 45%;" href="sms://{{client.Fac_Tel}}">
+        <a button *ngIf="client.Fac_Tel" ion-button icon-only round style="border-radius: 45%;" [href]="getSMSUrl(client.Fac_Tel)">
           <ion-icon name="chatbubbles"></ion-icon>
         </a>
 
@@ -67,7 +67,7 @@
               <ion-icon name="pin"></ion-icon>
             </ion-col>
             <ion-col>
-              {{client.Fac_Mor}}, {{client.Fac_Local}} <br/> {{client.Fac_Cp}}, {{client.Fac_Cploc}}
+              {{client.Fac_Mor}}
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -83,14 +83,6 @@
             </ion-col>
             <ion-col>
               Orders: {{total_faturacao}} {{client.Moeda}}
-            </ion-col>
-          </ion-row>
-          <ion-row align-items-center>
-            <ion-col col-1>
-              <ion-icon ios="logo-usd" md="logo-usd"></ion-icon>
-            </ion-col>
-            <ion-col>
-              Budgets: {{TotalOrcamento}} 3 Orçamentos
             </ion-col>
           </ion-row>
         </ion-grid>
