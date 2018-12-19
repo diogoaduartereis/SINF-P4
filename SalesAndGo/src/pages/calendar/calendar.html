@@ -6,9 +6,6 @@
 -->
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
     <ion-title>Calendar</ion-title>
     <button *ngIf="dateSelected" ion-button style="position: absolute; right: 1em; top: 0.4em;" (click)="onClearDay()">
         <p>See All Events</p>
@@ -25,7 +22,11 @@
 
     <ion-grid text-center>
 
-      <div *ngIf="!dispEvents.length">Porra nao ha eventos</div>
+      <div *ngIf="!dispEvents.length">
+          <h3>You have no upcoming events! <ion-icon name="sad"></ion-icon></h3>
+          <img width="200" src="../../assets/imgs/events.png">
+          <h4>Please add them on Primavera.</h4>       
+      </div>
 
       <ion-card style="height: 10em" *ngFor="let event of dispEvents">
         <ion-grid style="height: 100%">
@@ -60,4 +61,3 @@
 </ion-content>
 
 <nav-tabs></nav-tabs>
-

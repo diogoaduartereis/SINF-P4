@@ -61,7 +61,7 @@ export class CheckoutPage {
       if (this.products[index]['quantidade'] === 0) {
         this.products.splice(index, 1)
         if (this.products.length === 0)
-          this.navCtrl.push(CataloguePage, {});
+          this.navCtrl.pop();
       }
       else this.products[index]['isPlusEnabled'] = true;
     }
@@ -98,7 +98,9 @@ export class CheckoutPage {
     let response = this.primaveraAccess.postRequest(this.access_token, '/Vendas/Docs/CreateDocument/', 200, document);
     if (typeof response != 'undefined') {
         this.navCtrl.push(CataloguePage,{});
-    } 
+    }
+
+    this.navCtrl.pop();
   }
 
   insertOportunidade(products) {

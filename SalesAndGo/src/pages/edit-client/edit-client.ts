@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { ClientPage } from '../client/client';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the EditClientPage page.
@@ -24,9 +25,10 @@ export class EditClientPage {
   client: any;
   editClientForm: FormGroup;
   id: any;
+  vendedor: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public primavera: PrimaveraProvider, private formBuilder: FormBuilder,
-              public alertCtrl: AlertController, private toastCtrl: ToastController) {
+              public alertCtrl: AlertController, private toastCtrl: ToastController, private storage: Storage) {
     this.client = navParams.get('client');
     this.id = this.client["Cliente"];
     let nome = this.client['nome'];
@@ -53,6 +55,10 @@ export class EditClientPage {
       ModoRec: [ModoRec, Validators.required],
       CondPag: [CondPag, Validators.required]
     });
+
+    this.storage.get('Vendedor').then((val) => {
+      this.vendedor = val;
+    });
   }
 
   ionViewDidLoad() {
@@ -77,6 +83,7 @@ export class EditClientPage {
     let CondPag = this.editClientForm.value['CondPag'];
 
     const body = {
+      "Vendedor": this.vendedor,
       "CodigoTabLog": "Cliente",
       "ChaveLog": "Cliente",
       "EstadoBE": "",

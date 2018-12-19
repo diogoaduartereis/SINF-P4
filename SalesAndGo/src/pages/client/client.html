@@ -6,9 +6,6 @@
 -->
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
     <ion-title>Client</ion-title>
   </ion-navbar>
 </ion-header>
@@ -35,10 +32,6 @@
 
     <ion-card-content>
       <div text-center>
-        <button ion-button round icon-only round style="border-radius: 45%;">
-          <ion-icon name="mail"></ion-icon>
-        </button>
-
         <a button *ngIf="client.Fac_Tel" ion-button icon-only round style="border-radius: 45%;" href="sms://{{client.Fac_Tel}}">
           <ion-icon name="chatbubbles"></ion-icon>
         </a>
@@ -65,18 +58,10 @@
     </ion-segment>
   </div>
 
-  <div [ngSwitch]="clientInfo" style="height:100%;">
+  <div [ngSwitch]="clientInfo">
     <ion-list *ngSwitchCase="'information'">
       <ion-item>
         <ion-grid>
-          <ion-row align-items-center>
-            <ion-col col-1>
-              <ion-icon name="mail"></ion-icon>
-            </ion-col>
-            <ion-col>
-              example@gmail.com
-            </ion-col>
-          </ion-row>
           <ion-row align-items-center>
             <ion-col col-1>
               <ion-icon name="pin"></ion-icon>
@@ -114,10 +99,10 @@
 
     <ion-list *ngSwitchCase="'notes'">
       <ion-item>
-        <ion-textarea style="max-height: 100%; width: 100%; height: 100%;" placeholder="Enter notes">{{client.Notas}}</ion-textarea>
+        <ion-textarea [(ngModel)]="myNotes" style="max-height: 100%; width: 100%; height: 100%;" placeholder="Enter notes">{{client.Notas}}</ion-textarea>
       </ion-item>
       <ion-item>
-        <button ion-button>Save</button>
+        <button (click)="saveNotes($event, client)" ion-button>Save</button>
       </ion-item>
     </ion-list>
   </div>

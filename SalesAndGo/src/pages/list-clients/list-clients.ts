@@ -6,6 +6,7 @@ import { CallNumber } from '@ionic-native/call-number';
 import { PrimaveraProvider } from '../../providers/primavera/primavera';
 import { AddClientPage } from '../add-client/add-client';
 import { HomePage } from '../home/home';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the ListClientsPage page.
@@ -24,17 +25,21 @@ export class ListClientsPage {
   //@ViewChild("myNavTabs") myNavTabs: NavTabsComponent;
 
   clients: object[] = [];
+  vendedor: any;
 
   modifiedData: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private callNumber: CallNumber,
-              private primavera: PrimaveraProvider) {
+              public primavera: PrimaveraProvider, private storage: Storage) {
 
     const access_token = primavera.genAccessToken();
-    const query = `SELECT C.Cliente, C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda 
-    FROM Clientes C`;
-
-    this.clients = primavera.postRequest(access_token, '/Administrador/Consulta', 200, query);
-    this.modifiedData = this.clients;
+    this.storage.get('Vendedor').then((val) => {
+      this.vendedor = val;
+      const query = `SELECT V.Vendedor, C.Cliente, C.nome, C.Fac_Mor, C.Fac_Local, C.Fac_Cp, C.Fac_Cploc, C.Fac_Tel, C.NumContrib, C.Pais, C.Moeda 
+      FROM Clientes C INNER JOIN Vendedores V on V.Vendedor = C.Vendedor Where C.Vendedor = '` + this.vendedor + `'ORDER BY V.Vendedor`;
+  
+      this.clients = primavera.postRequest(access_token, '/Administrador/Consulta', 200, query);
+      this.modifiedData = this.clients;
+    });
   }
 
   callClient(event,num_tel){

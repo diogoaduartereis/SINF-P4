@@ -7,6 +7,7 @@ import {Md5} from 'ts-md5/dist/md5';
 import { ToastController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { ListClientsPage } from '../list-clients/list-clients';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the AddClientPage page.
@@ -25,9 +26,10 @@ export class AddClientPage {
 
   addClientForm: FormGroup;
   hash: Md5;
+  vendedor: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public primavera: PrimaveraProvider, private formBuilder: FormBuilder,private Md5: Md5,
-              public alertCtrl: AlertController, private toastCtrl: ToastController) {
+              public alertCtrl: AlertController, private toastCtrl: ToastController, private storage: Storage) {
     this.addClientForm = this.formBuilder.group({
       Nome: ['', Validators.required],
       Morada: ['', Validators.required],
@@ -39,6 +41,10 @@ export class AddClientPage {
       ModoRec: ['', Validators.required]
     });
     this.hash = this.Md5;
+
+    this.storage.get('Vendedor').then((val) => {
+      this.vendedor = val;
+    });
   }
 
   ionViewDidLoad() {
@@ -66,6 +72,7 @@ export class AddClientPage {
     let id = n.toString().substr(0, 12);
 
     const body = {
+      "Vendedor": this.vendedor,
       "Cliente": id,
       "Nome": nome,
       "Morada": Morada,
