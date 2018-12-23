@@ -74,8 +74,10 @@ export class PrimaveraProvider {
 
     Http.onreadystatechange=function(){
       if(this.readyState==4 && this.status==expectedResponse){
-        if(JSON.parse(Http.responseText).DataSet){
+        if(Http.responseText.length > 0){
           response = JSON.parse(Http.responseText).DataSet.Table;
+        }else{
+          response = [""];
         }
       }else{
         console.log(Http.responseText);
@@ -102,7 +104,11 @@ export class PrimaveraProvider {
 
     Http.onreadystatechange=function(){
       if(this.readyState==4 && this.status==expectedResponse){
-        response = JSON.parse(Http.responseText).DataSet.Table;
+        if(Http.responseText.length > 0){
+          response = JSON.parse(Http.responseText).DataSet.Table;
+        }else{
+          response = [""];
+        }
       }else{
         console.log(Http.responseText);
       }

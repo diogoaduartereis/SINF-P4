@@ -302,7 +302,7 @@ export class CataloguePage {
         let toast = this.toastCtrl.create({
           message: 'Product added to order',
           duration: 1500,
-          position: 'top'
+          position: 'bottom'
         });
         toast.present();
         this.hasProducts=true;
@@ -317,7 +317,7 @@ export class CataloguePage {
       let toast = this.toastCtrl.create({
         message: 'Product added to order',
         duration: 1500,
-        position: 'top'
+        position: 'bottom'
       });
       this.hasProducts=true;
       toast.present();
