@@ -36,7 +36,7 @@ export class EditClientPage {
     let Telefone = this.client['Fac_Tel'];
     let NumContribuinte = this.client['NumContrib'];
     let Moeda = this.client['Moeda'];
-    let Pais = this.client['pais'];
+    let Pais = this.client['Pais'];
     let ModoPag = '';
     let ModoRec = '';
     let CondPag = '';
